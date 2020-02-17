@@ -1,0 +1,15 @@
+[Wed Feb 05 04:04:22.190741 2020] [:error] [pid 722:tid 140616512395008] [client 131.215.220.161:61155] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:04:24.164637 2020] [:error] [pid 722:tid 140616520787712] [client 131.215.220.161:61155] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:04:29.015615 2020] [:error] [pid 722:tid 140616423962368] [client 131.215.220.161:61155] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:04:32.364440 2020] [:error] [pid 722:tid 140616504002304] [client 131.215.220.161:61155] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:04:35.676582 2020] [:error] [pid 722:tid 140616415569664] [client 131.215.220.161:61155] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:04:44.037712 2020] [:error] [pid 722:tid 140616398784256] [client 131.215.220.161:61172] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:05:03.362230 2020] [:error] [pid 722:tid 140616381998848] [client 131.215.220.161:61182] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:05:09.468678 2020] [:error] [pid 722:tid 140616373606144] [client 131.215.220.161:61183] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:06:18.113555 2020] [:error] [pid 722:tid 140616356820736] [client 131.215.220.165:61230] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:06:23.054127 2020] [:error] [pid 722:tid 140616348428032] [client 66.249.68.10:40902] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:07:27.269465 2020] [:error] [pid 722:tid 140616323249920] [client 131.215.220.165:61273] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:07:34.760226 2020] [:error] [pid 721:tid 140616504002304] [client 131.215.220.165:61274] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:15:10.748110 2020] [:error] [pid 722:tid 140616306464512] [client 131.215.220.165:50042] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi
+[Wed Feb 05 04:15:10.929486 2020] [:error] [pid 722:tid 140616298071808] [client 131.215.220.165:50042] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi, referer: http://lloyd.caltech.edu/lloyd/index
+[Wed Feb 05 04:15:16.840873 2020] [:error] [pid 722:tid 140616289679104] [client 131.215.220.165:50041] Target WSGI script not found or unable to stat: /var/www/app/lloyd/lloyd.wsgi

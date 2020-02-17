@@ -1,0 +1,50 @@
+{%extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Lloyd House Bylaws</h1>
+
+    <div class="bylawsection">
+      <a href="#constitution">Constitution</a><br>
+      <a href="#roompicks">Roompick Rules</a><br>
+      <a href="#election">Election Rules</a><br>
+      <a href="#ucc">U.C.C. Selection Rules</a><br>
+      <a href="#membership">Social- and Full-Membership Rules</a><br>
+      <a href="#murals">Mural Resolution</a><br>
+      <a href="#property">Property Resolution</a><br>
+      <a href="#socialathteam">Social and Athletic Team</a><br>
+    </div>
+
+    <div id='constitution' class="bylawsection">
+      {% include 'bylaws/constitution.html' %}
+    </div>
+
+    <div id='roompicks' class="bylawsection">
+      {% include 'bylaws/roompicks.html' %}
+    </div>
+    
+    <div id='election' class="bylawsection">
+      {% include 'bylaws/election.html' %}
+    </div>
+    
+    <div id='ucc' class="bylawsection">
+      {% include 'bylaws/ucc.html' %}
+    </div>
+    
+    <div id='membership' class="bylawsection">
+      {% include 'bylaws/membership.html' %}
+    </div>
+    
+    <div id='murals' class="bylawsection">
+      {% include 'bylaws/murals.html' %}
+    </div>
+    
+    <div id='property' class="bylawsection">
+      {% include 'bylaws/property.html' %}
+    </div>
+
+    <div id='socialathteam' class="bylawsection">
+      {% include 'bylaws/socialathteam.html' %}
+    </div>
+    
+</div>
+{% endblock %}
