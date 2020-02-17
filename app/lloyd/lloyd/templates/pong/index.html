@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Ping Pong Leaderboard</h1>
+
+    <div>
+      <hr>
+      <table class="futable">
+        <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ user.nickname if user.nickname != "" else user.firstname }}</td>
+            <td>2100</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+{% endblock %}

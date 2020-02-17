@@ -1,0 +1,9 @@
+# Mac Specific Files
+.DS_Store
+*.pyc
+venv/
+db_repository/
+*.db
+node_modules
+.idea
+app/rotation/static/index_bundle.js
