@@ -95,9 +95,9 @@ def account():
 #     db.session.commit()
 #     return redirect(url_for('lloyd.index')) 
 
-@lloyd.route('/alleymaps')
-def alleymaps():
-    return render_template("alleymaps.html")
+@lloyd.route('/prefrosh')
+def prefrosh():
+    return render_template("prefrosh.html")
 
 @lloyd.route('/bylaws')
 def bylaws():
