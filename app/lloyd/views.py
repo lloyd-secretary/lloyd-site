@@ -127,3 +127,7 @@ def houselist():
 def pong():
     users = User.query.all()
     return render_template("pong/index.html", users=users)
+
+@lloyd.route('/minutes')
+def prefrosh():
+    return render_template("minutes.html")
