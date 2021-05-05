@@ -129,5 +129,6 @@ def pong():
     return render_template("pong/index.html", users=users)
 
 @lloyd.route('/minutes')
+@login_required
 def minutes():
     return render_template("minutes.html")
