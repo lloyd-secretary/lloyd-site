@@ -57,9 +57,6 @@ class PrefroshComments(Resource):
         args = parser.parse_args()
         comment = args["comment"]
         prefrosh = Prefrosh.query.get(prefrosh_id)
-        print user
-        print user.id
-        print "nigeria"
         feedback = Feedback(user.id, prefrosh, comment)
         db.session.add(feedback)
         db.session.commit()
