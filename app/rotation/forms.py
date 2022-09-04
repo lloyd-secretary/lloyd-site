@@ -7,5 +7,5 @@ class CommentUpdateForm(Form):
 	rating = IntegerField('rating', validators=[DataRequired()])
 
 
-class Top5(Form):
-	tops = SelectMultipleField('comment', choices=[], validators=[DataRequired()])
+#class Top5(Form):
+#	tops = SelectMultipleField('comment', choices=[], validators=[DataRequired()])
