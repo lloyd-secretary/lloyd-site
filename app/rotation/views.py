@@ -35,52 +35,53 @@ def send_img(path):
     return send_from_directory('static/img/', path)
 
 
-@rotation.route('/top5', methods=['GET', 'POST'])
-@login_required
-def top5():
-    form = Top5(request.form)
-    frosh = Prefrosh.query.all()
-    form.tops.choices = [(str(f.id), f.getFullName()) for f in frosh]
-    if form.validate_on_submit():
-    	if current_user.top5 == 0:
-	    	res = form.tops.data
-	    	if len(res) <= 5 and len(res) > 0:
-		    	for r in res:
-		    		f = Prefrosh.query.get(int(r))
-		    		f.top5 += 1
-		    	current_user.top5 = 1
-		    	db.session.commit()
 
-    return render_template("top5.html",
-                            form=form)
+# @rotation.route('/top5', methods=['GET', 'POST'])
+# @login_required
+# def top5():
+#     form = Top5(request.form)
+#     frosh = Prefrosh.query.all()
+#     form.tops.choices = [(str(f.id), f.getFullName()) for f in frosh]
+#     if form.validate_on_submit():
+#     	if current_user.top5 == 0:
+# 	    	res = form.tops.data
+# 	    	if len(res) <= 5 and len(res) > 0:
+# 		    	for r in res:
+# 		    		f = Prefrosh.query.get(int(r))
+# 		    		f.top5 += 1
+# 		    	current_user.top5 = 1
+# 		    	db.session.commit()
 
-@rotation.route('/bottom5', methods=['GET', 'POST'])
-@login_required
-def bottom5():
-    form = Top5(request.form)
-    frosh = Prefrosh.query.all()
-    form.tops.choices = [(str(f.id), f.getFullName()) for f in frosh]
-    if form.validate_on_submit():
-    	if current_user.bottom5 == 0:
-	    	res = form.tops.data
-	    	if len(res) <= 5 and len(res) > 0:
-		    	for r in res:
-		    		f = Prefrosh.query.get(int(r))
-		    		f.bottom5 += 1
-		    	current_user.bottom5 = 1
-		    	db.session.commit()
+#     return render_template("top5.html",
+#                             form=form)
 
-    return render_template("top5.html",
-                            form=form)
+# @rotation.route('/bottom5', methods=['GET', 'POST'])
+# @login_required
+# def bottom5():
+#     form = Top5(request.form)
+#     frosh = Prefrosh.query.all()
+#     form.tops.choices = [(str(f.id), f.getFullName()) for f in frosh]
+#     if form.validate_on_submit():
+#     	if current_user.bottom5 == 0:
+# 	    	res = form.tops.data
+# 	    	if len(res) <= 5 and len(res) > 0:
+# 		    	for r in res:
+# 		    		f = Prefrosh.query.get(int(r))
+# 		    		f.bottom5 += 1
+# 		    	current_user.bottom5 = 1
+# 		    	db.session.commit()
 
-@rotation.route('/fuckingobfuscatethisurlrealquikshiet', methods=['GET', 'POST'])
-@login_required
-def ratings():
-    form = CommentUpdateForm(request.form)
+#     return render_template("top5.html",
+#                             form=form)
 
-    if form.validate_on_submit():
-    	comment = Feedback.query.get(form.comment.data)
-    	comment.rating = form.rating.data
-    	db.session.commit()
-    return render_template("rotationaccount.html",
-                            form=form)
+# @rotation.route('/fuckingobfuscatethisurlrealquikshiet', methods=['GET', 'POST'])
+# @login_required
+# def ratings():
+#     form = CommentUpdateForm(request.form)
+
+#     if form.validate_on_submit():
+#     	comment = Feedback.query.get(form.comment.data)
+#     	comment.rating = form.rating.data
+#     	db.session.commit()
+#     return render_template("rotationaccount.html",
+#                             form=form)
