@@ -806,7 +806,7 @@ html, body {
   color: black;
 }
 
-.contactTable {
+table.contactTable {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;   
@@ -815,7 +815,7 @@ html, body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.contactHeader {
+tr.contactHeader {
   font-size: 12pt;
   font-style:bold;
 }
