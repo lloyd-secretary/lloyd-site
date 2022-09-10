@@ -112,7 +112,6 @@ def contact():
     return render_template("contact.html")
 
 @lloyd.route('/gallery')
-@login_required
 def gallery():
     return render_template("gallery.html")
 
@@ -126,7 +125,7 @@ def houselist():
 @login_required
 def pong():
     users = User.query.all()
-    return render_template("pong/index.html", users=users)
+    return render_template("pong.html", users=users)
 
 @lloyd.route('/minutes')
 @login_required
