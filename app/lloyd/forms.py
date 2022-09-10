@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import SubmitField, StringField, BooleanField, PasswordField, SelectMultipleField, RadioField, DateField, widgets
 from wtforms.fields.html5 import EmailField, TelField
-from wtforms.validators import DataRequired, Length, Regexp
+from wtforms.validators import DataRequired, Length, Regexp, Optional
 # from wtforms_components import PhoneNumberField
 
 class LoginForm(Form):
@@ -13,7 +13,7 @@ class AccountUpdateForm(Form):
 	nickname = StringField('nickname', validators=[], render_kw={"placeholder": "nickname"})
 	major = StringField('major', validators=[], render_kw={"placeholder": "major"})
 	email = EmailField('email', validators=[DataRequired()], render_kw={"placeholder": "email"})
-	cellphone = TelField('cellphone', validators=[Regexp("^\d{10}$", message=u"Enter 10 digits")], render_kw={"placeholder": "cellphone"})
+	cellphone = TelField('cellphone', validators=[Optional(), Regexp("^\d{10}$", message=u"Enter 10 digits")], render_kw={"placeholder": "cellphone"})
 	birthday = DateField('birthday', validators=[])
 	submit = SubmitField("Update Account")
 	
