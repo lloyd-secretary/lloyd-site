@@ -57,18 +57,7 @@ class Prefrosh(db.Model):
         return '<Prefrosh %r>' % (self.firstname + " " + self.lastname)
 
     def getFullName(self):
-        fullname = [self.firstname]
-        if self.nickname:
-            fullname += ["(" + self.nickname + ")"]
-        if self.middlename:
-            fullname += [self.middlename]
-        fullname += [self.lastname]
-        return " ".join(fullname)
-
-    def getPreferredName(self):
-        if self.nickname:
-            return self.nickname
-        return self.firstname
+        return self.firstname + " " + self.lastname
 
     def serialize(self):
         photo_url = default_photo_url
@@ -77,12 +66,12 @@ class Prefrosh(db.Model):
         return {
             'id': self.id,
             'displayName': self.getFullName(),
-            'preferredName': self.getPreferredName(),
+            'preferredName': self.getFullName(),
             'photo_url': photo_url,
-            'rotationHouse': self.house.name,
-            'dinner_id': self.dinner.id,
-            'dessert_id': self.dessert.id,
-            'comeback': self.comeback,
+            'rotationHouse': 'prefrosh land',
+            'dinner_id': 0,#self.dinner.id,
+            'dessert_id': 0,
+            'comeback': 0,
         }
 
 class Feedback(db.Model):
@@ -107,37 +96,6 @@ class Feedback(db.Model):
             'timestamp': self.timestamp.strftime('%Y-%m-%d %I:%M %p'),
         }
 
-class House(db.Model):
-    __tablename__ = 'houses'
-    __bind_key__ = 'rotation'
-
-class Dinner(db.Model):
-    __tablename__ = 'dinners'
-    __bind_key__ = 'rotation'
-
-class Dessert(db.Model):
-    __tablename__ = 'desserts'
-    __bind_key__ = 'rotation'
-
-class Rating(db.Model):
-    __tablename__ = 'ratings'
-    __bind_key__ = 'rotation'
-
-    def __init__(self, user_id, pf, fit, comfort_level, would_participate, camel):
-        self.user_id = user_id
-        self.prefrosh = pf
-        self.fit = fit
-        self.comfort_level = comfort_level
-        self.would_participate = would_participate
-        self.camel = camel
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'user': load_user(self.user_id).username,
-            'prefrosh': self.prefrosh.getFullName(),
-            'fit': self.fit,
-            'comfort_level': self.comfort_level,
-            'would_participate': self.would_participate,
-            'camel': self.camel,
-        }
+#class Dinner(db.Model):
+#    __tablename__ = 'dinners'
+#    __bind_key__ = 'rotation'
