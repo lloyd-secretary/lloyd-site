@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 class CommentUpdateForm(Form):
 	comment = IntegerField('comment', validators=[DataRequired()])
-	rating = IntegerField('rating', validators=[DataRequired()])
+	#rating = IntegerField('rating', validators=[DataRequired()])
