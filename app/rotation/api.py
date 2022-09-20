@@ -46,9 +46,9 @@ class PrefroshComments(Resource):
         user = g.user
         prefrosh = Prefrosh.query.get(prefrosh_id)
         if is_admin():
-            comments = Feedback.query.filter_by(Feedback.prefrosh=prefrosh_id).all()
+            comments = Feedback.query.filter_by(prefrosh=prefrosh_id).all()
         else:
-            comments = Feedback.query.filter(or_(Feedback.user_id==user.id, Feedback.user_id==0)).filter_by(Feedback.prefrosh=prefrosh_id).all()
+            comments = Feedback.query.filter(or_(Feedback.user_id==user.id, Feedback.user_id==0)).filter_by(prefrosh=prefrosh_id).all()
         return {
             'comments': [comment.serialize() for comment in comments]
         }
