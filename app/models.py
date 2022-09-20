@@ -92,7 +92,6 @@ class Feedback(db.Model):
             'user': load_user(self.user_id).username,
             'prefrosh': self.prefrosh.getFullName(),
             'content': self.comment,
-            'rating': 0,
             'timestamp': self.timestamp.strftime('%Y-%m-%d %I:%M %p'),
         }
 
