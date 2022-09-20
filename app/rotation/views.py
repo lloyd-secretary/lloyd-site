@@ -19,7 +19,7 @@ def before_request():
     else:
         return redirect(url_for('lloyd.login'))
     # require user.rotation to see any pages
-    if not g.user.rotation:
+    if not (g.user.rotation or g.user.admin) or g.user.membership == 's':
         return redirect(url_for('lloyd.index'))
 
 def is_admin():
