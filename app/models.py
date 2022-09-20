@@ -57,18 +57,7 @@ class Prefrosh(db.Model):
         return '<Prefrosh %r>' % (self.firstname + " " + self.lastname)
 
     def getFullName(self):
-        fullname = [self.firstname]
-        if self.nickname:
-            fullname += ["(" + self.nickname + ")"]
-        if self.middlename:
-            fullname += [self.middlename]
-        fullname += [self.lastname]
-        return " ".join(fullname)
-
-    def getPreferredName(self):
-        if self.nickname:
-            return self.nickname
-        return self.firstname
+        return self.firstname + " " + self.lastname
 
     def serialize(self):
         photo_url = default_photo_url
@@ -77,12 +66,12 @@ class Prefrosh(db.Model):
         return {
             'id': self.id,
             'displayName': self.getFullName(),
-            'preferredName': self.getPreferredName(),
+            'preferredName': self.getFullName(),
             'photo_url': photo_url,
-            'rotationHouse': self.house.name,
-            'dinner_id': self.dinner.id,
-            'dessert_id': self.dessert.id,
-            'comeback': self.comeback,
+            'rotationHouse': 'prefrosh land',
+            'dinner_id': 0,#self.dinner.id,
+            'dessert_id': 0,
+            'comeback': 0,
         }
 
 class Feedback(db.Model):
