@@ -6,6 +6,9 @@ from . import rotation
 from .. import db, production
 from ..models import Prefrosh, Feedback
 
+import sys
+from __future__ import print_function
+
 api = Api(rotation)
 
 parser = reqparse.RequestParser()
@@ -42,13 +45,13 @@ class PrefroshComments(Resource):
         decorators = [login_required]
 
     def get(self, prefrosh_id):
-        print(self)
+        print(prefrosh_id, file=sys.stderr)
         user = g.user
         prefrosh = Prefrosh.query.get(prefrosh_id)
         if is_admin():
-            comments = Feedback.query.filter_by(prefrosh=prefrosh_id).all()
+            comments = Feedback.query.filter_by(frosh_id=prefrosh_id).all()
         else:
-            comments = Feedback.query.filter(or_(Feedback.user_id==user.id, Feedback.user_id==0)).filter_by(prefrosh=prefrosh_id).all()
+            comments = Feedback.query.filter(or_(Feedback.user_id==user.id, Feedback.user_id==0)).filter_by(frosh_id=prefrosh_id).all()
         return {
             'comments': [comment.serialize() for comment in comments]
         }
