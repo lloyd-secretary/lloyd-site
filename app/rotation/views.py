@@ -1,4 +1,4 @@
-import sys
+#import sys
 from flask import render_template, g, send_from_directory, flash, redirect, session, url_for, request
 
 from flask_login import login_required, current_user
@@ -23,7 +23,7 @@ def before_request():
     if not (g.user.rotation):
         return redirect(url_for('lloyd.index'))
     
-    print(g.user, file=sys.stderr)
+    #print(g.user, file=sys.stderr)
 
     #if g.user.membership == 's':
     #    return redirect(url_for('lloyd.index'))
