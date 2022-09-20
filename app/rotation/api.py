@@ -38,6 +38,7 @@ class PrefroshIndividual(Resource):
             return Prefrosh.query.get(prefrosh_id).serialize()
 
 class PrefroshComments(Resource):
+    print(self)
     if production:
         decorators = [login_required]
 

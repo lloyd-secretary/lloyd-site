@@ -83,7 +83,8 @@ class Feedback(db.Model):
 
     def __init__(self, user_id, pf, comment):
         self.user_id = user_id
-        self.prefrosh = pf
+        print(pf)
+        self.prefrosh = pf.id
         self.comment = comment
 
     def serialize(self):
