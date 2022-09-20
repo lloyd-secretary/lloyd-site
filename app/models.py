@@ -90,7 +90,7 @@ class Feedback(db.Model):
         return {
             'id': self.id,
             'user': load_user(self.user_id).username,
-            'prefrosh': self.frosh_id
+            'prefrosh': self.frosh_id,
             'content': self.comment,
             'timestamp': self.timestamp.strftime('%Y-%m-%d %I:%M %p'),
         }
