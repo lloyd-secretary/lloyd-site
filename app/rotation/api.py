@@ -57,7 +57,7 @@ class PrefroshComments(Resource):
         args = parser.parse_args()
         comment = args["comment"]
         prefrosh = Prefrosh.query.get(prefrosh_id)
-        feedback = Feedback(user.id, prefrosh, comment)
+        feedback = Feedback(user.id, prefrosh_id, comment)
         db.session.add(feedback)
         db.session.commit()
         return feedback.serialize()
