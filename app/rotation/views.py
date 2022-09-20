@@ -19,7 +19,7 @@ def before_request():
     else:
         return redirect(url_for('lloyd.login'))
     # require user.rotation to see any pages
-    if not (g.user.rotation or g.user.admin):
+    if not (g.user.rotation):
         return redirect(url_for('lloyd.index'))
     
     print(g.user)
