@@ -92,7 +92,7 @@ class Feedback(db.Model):
             'user': load_user(self.user_id).username,
             'prefrosh': self.frosh_id,
             'content': self.comment,
-            'timestamp': self.timestamp.strftime('%Y-%m-%d %I:%M %p'),
+            'timestamp': None,
         }
 
 #class Dinner(db.Model):
