@@ -96,37 +96,6 @@ class Feedback(db.Model):
             'timestamp': self.timestamp.strftime('%Y-%m-%d %I:%M %p'),
         }
 
-class House(db.Model):
-    __tablename__ = 'houses'
-    __bind_key__ = 'rotation'
-
 class Dinner(db.Model):
     __tablename__ = 'dinners'
     __bind_key__ = 'rotation'
-
-class Dessert(db.Model):
-    __tablename__ = 'desserts'
-    __bind_key__ = 'rotation'
-
-class Rating(db.Model):
-    __tablename__ = 'ratings'
-    __bind_key__ = 'rotation'
-
-    def __init__(self, user_id, pf, fit, comfort_level, would_participate, camel):
-        self.user_id = user_id
-        self.prefrosh = pf
-        self.fit = fit
-        self.comfort_level = comfort_level
-        self.would_participate = would_participate
-        self.camel = camel
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'user': load_user(self.user_id).username,
-            'prefrosh': self.prefrosh.getFullName(),
-            'fit': self.fit,
-            'comfort_level': self.comfort_level,
-            'would_participate': self.would_participate,
-            'camel': self.camel,
-        }
