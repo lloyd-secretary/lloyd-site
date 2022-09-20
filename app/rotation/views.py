@@ -22,7 +22,7 @@ def before_request():
     if not (g.user.rotation):
         return redirect(url_for('lloyd.index'))
     
-    print(g.user)
+    print(g.user, file=sys.stderr)
 
     #if g.user.membership == 's':
     #    return redirect(url_for('lloyd.index'))
