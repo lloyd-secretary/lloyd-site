@@ -96,6 +96,6 @@ class Feedback(db.Model):
             'timestamp': self.timestamp.strftime('%Y-%m-%d %I:%M %p'),
         }
 
-class Dinner(db.Model):
-    __tablename__ = 'dinners'
-    __bind_key__ = 'rotation'
+#class Dinner(db.Model):
+#    __tablename__ = 'dinners'
+#    __bind_key__ = 'rotation'
