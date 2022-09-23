@@ -69,7 +69,7 @@ class Prefrosh(db.Model):
             'preferredName': self.getFullName(),
             'photo_url': photo_url,
             'rotationHouse': 'prefrosh land',
-            'dinner_id': 0,#self.dinner.id,
+            'dinner_id': (self.dinner_id+1),
             'dessert_id': 0,
             'comeback': 0,
         }
