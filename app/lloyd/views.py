@@ -4,6 +4,8 @@ from . import lloyd
 from .. import db, login_manager
 from ..models import User
 from .forms import *
+import json
+import datetime
 
 @lloyd.route('/')
 @lloyd.route('/index')
@@ -119,13 +121,52 @@ def gallery():
 @login_required
 def houselist():
     people = User.query.all()
-    return render_template("houselist.html", people=people)
+    is_admin = current_user.admin()
+    return render_template("houselist.html", people=people, is_admin=is_admin)
 
-@lloyd.route('/pong')
+@lloyd.route('/getUserDetails',methods=['POST'])
 @login_required
-def pong():
-    users = User.query.all()
-    return render_template("pong.html", users=users)
+def getUserDetails():
+    people = User.query.all()
+    colNames = ['year', 'membership', 'firstname', 'nickname', 'lastname', 'address', 'major', 'email', 'cellphone', 'birthday']
+    
+    candidates = filter(lambda x: x.email == request.form['email'], people)
+    if len(candidates) == 0:
+        data = {val: None for val in colNames}
+    else:
+        target = candidates[0]
+        def format(x):
+            if isinstance(x, datetime.date):
+                return x.strftime("%m/%d/%Y")
+            else:
+                return x
+        data = {val: format(getattr(target, val)) for val in colNames}
+    return json.dumps(data)
+
+@lloyd.route('/updateUserDetails',methods=['POST'])
+@login_required
+def updateUserDetails():
+    if not current_user.is_admin:
+        return "Failed"
+    
+    people = User.query.all()
+    colNames = ['year', 'membership', 'firstname', 'nickname', 'lastname', 'address', 'major', 'email', 'cellphone', 'birthday']
+    
+    candidates = filter(lambda x: x.email == request.form['email'], people)
+    if len(candidates) == 0:
+        data = {val: None for val in colNames}
+    else:
+        target = candidates[0]
+        if request.form['membership'] in ['s', 'f']:
+            target.set_full(request.form['membership'])
+        db.session.commit()
+        return json.dumps(request.form)
+
+# @lloyd.route('/pong')
+# @login_required
+# def pong():
+#     users = User.query.all()
+#     return render_template("pong.html", users=users)
 
 @lloyd.route('/minutes')
 @login_required

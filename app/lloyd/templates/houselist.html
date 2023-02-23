@@ -1,6 +1,53 @@
 {%extends "base.html" %}
 {% block content %}
 
+{% if is_admin == True %} 
+
+<script>
+function edit(elm) {
+	$.ajax({
+        url: '/lloyd/getUserDetails',
+		xhrFields: {
+			withCredentials: true
+		},
+        data: {
+            email: $(elm).attr('data-id')
+        },
+        type: 'POST',
+        success: function(res) {
+            data = JSON.parse(res);
+			if (data.email) {
+				$("#editModalLabel").text($(elm).attr('data-id'));
+				$("#editMembership").val($(elm).attr('data-memb'));
+			}
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    })
+}
+function updateMembership() {
+	email = $("#editModalLabel").text()
+	membership = $("#editMembership").val()
+	$.ajax({
+        url: '/lloyd/updateUserDetails',
+        data: {
+            membership: membership,
+            email: email
+        },
+        type: 'POST',
+        success: function(res) {
+			location.reload();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    })
+}
+</script>
+
+{% endif %}
+
 <div class="container table-responsive" id="houselist">
 	<h1>Lloyd Houselist <input class="search" placeholder="search" /> </h1>
 	  
@@ -17,11 +64,12 @@
 				<td class="sort" data-sort="email">Email</button></td>
 				<td class="sort" data-sort="phone">Phone</button></td>
 				<td class="sort" data-sort="birthday">Birthday</button></td>
+				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit</td> {% endif %}
 			</tr>	
 		</thead>		
 		<tbody class="list">
 			{% for p in people %}
-				<tr>
+				<tr id="row_{{p.email[0:p.email.index('@')]}}">
 					<td class="year"> {{p.year}} </td>
 					<td class="membership"> {% if p.membership == 'f' %} Full {% else %} Social {% endif %} </td>
 					<td class="firstname"> {{p.firstname}} </td>
@@ -32,11 +80,47 @@
 					<td class="email"> <a href="mailto:{{p.email}}"> {{p.email}}</a> </td>
 					<td class="phone"> <a href="tel:+1{{p.cellphone}}"> {{p.cellphone}} </a> </td>
 					<td class="birthday"> {{p.birthday}} </td>
-				</tr>
+					{% if is_admin == True %} 
+					<td class="edit">
+						<a data-toggle="modal" data-target="#editModal" data-id="{{p.email}}" data-memb="{{p.membership}}" onclick="edit(this)"><span class="glyphicon glyphicon-pencil"></span></a>
+					</td> 
+					{% endif %}
+				</tr i>
 			{% endfor %}	
 		</tbody>
 	</table>
 </div>
+
+{% if is_admin == True %} 
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel">Update Member</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">House Membership:</label>
+						<select class="form-control" id="editMembership">
+							<option value="f">Full</option>
+							<option value="s">Social</option>
+						</select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnUpdate" class="btn btn-primary" onclick="updateMembership()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
 
 <script src="http://listjs.com/assets/javascripts/list.min.js"></script>
 <script type='text/javascript'> 

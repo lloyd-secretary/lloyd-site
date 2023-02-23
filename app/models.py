@@ -1,5 +1,6 @@
 from app import db, bcrypt
 from flask_login import UserMixin
+from sqlalchemy.inspection import inspect
 
 db.reflect()
 
@@ -28,6 +29,9 @@ class User(db.Model, UserMixin):
     def set_nomail(self, nomail):
         self.nomail = nomail
 
+    def set_full(self, membership):
+        self.membership = membership
+
     __subscribable_mailing_lists = ['all',
                                     'lloydspam',
                                     'spam',
@@ -45,6 +49,9 @@ class User(db.Model, UserMixin):
         for s in self.__subscribable_mailing_lists:
             # then we set the db values to those in subscriptions
             setattr(self, s, int(subscriptions[s]))
+
+    def admin(self):
+        return self.is_admin == 1
 
 def load_user(user_id):
     return User.query.get(int(user_id))
