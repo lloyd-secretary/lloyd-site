@@ -59,11 +59,11 @@ Now from inside of
 ```mysql
 CREATE DATABASE lloyd;
 use lloyd;
-source temp-lloyd.sql;
+source test-lloyd.sql;
 
 CREATE DATABASE rotation;
 use rotation;
-source temp-rotation.sql;
+source test-rotation.sql;
 
 CREATE USER web@localhost;
 
