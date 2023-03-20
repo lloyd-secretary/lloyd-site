@@ -75,7 +75,7 @@ GRANT ALL PRIVILEGES ON rotation.* TO web@localhost;
 
 ## Run web server
 
-Set `production = False` in app/__init__.py (please don't commit changes with this file having production = False, pull requests will be rejected).
+Set `production = False` in `app/__init__.py` (please don't commit changes with this file having production = False, pull requests will be rejected).
 
 The previous change will make it so that when you change a template file or something, it will automatically reload the file when you reload, which makes testing frontend really easy!
 
