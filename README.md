@@ -9,6 +9,21 @@ Lloyd House Website
 
 I wouldn't recommend trying to get this set up on Windows, since mysql-python on Windows has really bad support. Instead, download VMWare/Virtualbox and create an Ubuntu 18 VM from an iso file (the server runs Ubuntu 14, but it was too hard for me to get that running because all of its default packages are so far out of support).
 
+### Mac
+
+You'll need a virtual machine for Mac as well.
+
+```
+brew install --cask multipass
+```
+
+Then start a shell for the VM:
+```
+multipass shell virtmach
+```
+
+Then you have an Ubuntu 18.04 VM, and follow the instructions for Linux.
+
 ### Linux (Ubuntu 18)
 
 Install Python 2.7
@@ -22,31 +37,16 @@ cd lloyd-site/
 pip install -r requirements.txt 
 ```
 
-Install mysql.
+Install mysql:
 
 ```
 sudo apt-get install libmysqlclient-dev
 sudo apt install mysql-server-5.7 # or whatever version is default 
 ```
 
-### Mac
-
-Install git, python 2.7 and python pip.
-
-```
-git clone https://github.com/lloyd-secretary/lloyd-site
-cd lloyd-site/
-```
-
-Then create a virtual environment and activate it. We need a virtual environment so if you have other installations they don't affect each other.
-
-```
-pip install -r requirements.txt 
-```
-
-Then you can just do `deactivate` when you're done working on the virtual environment.
-
 ## All Systems (DB setup)
+
+You need MySQL 5.5 probably, but it seems like mysql 5.7 works for Ubuntu 18.
 
 You can enter mysql for the first time with:
 
