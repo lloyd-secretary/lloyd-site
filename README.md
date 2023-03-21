@@ -13,12 +13,17 @@ I wouldn't recommend trying to get this set up on Windows, since mysql-python on
 
 You'll need a virtual machine for Mac as well.
 
-```
+```zsh
 brew install --cask multipass
 ```
 
-Then start a shell for the VM:
+Then, create a VM named virtmach:
+```zsh
+multipass launch --name virtmach "18.04"
 ```
+
+Then start a shell for the VM:
+```zsh
 multipass shell virtmach
 ```
 
@@ -35,6 +40,12 @@ sudo apt install git
 git clone https://github.com/lloyd-secretary/lloyd-site
 cd lloyd-site/
 pip install -r requirements.txt 
+```
+
+If you have any errors, here are some things you might need to download (on a multipass VM):
+```
+sudo apt-get install python-dev
+sudo apt-get install libffi-dev
 ```
 
 Install mysql:
