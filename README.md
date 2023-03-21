@@ -82,3 +82,34 @@ The previous change will make it so that when you change a template file or some
 ```bash
 python run.py
 ```
+
+## Editing files
+
+You can always edit files directly from nano or vim, or gedit, but those might get annoying and it might be slow to edit directly from the virtual machine at all.
+
+Instead, we will:
+1. Set up SSH on the VM
+2. Use VS code on your host (main computer not VM)
+3. Connect to the codebase via SSH
+4. Use port forwarding to forward port 5000 to your main computer
+5. Now if you do `python run.py` from a terminal in VS code, then you should be able to access localhost:5000 in your browser window on your normal browser (not in VM).
+
+Remember, to do any of this your VM must be on to accept the SSH connection.
+
+In VMWare (windows):
+```sh
+sudo apt-get install openssh-server
+sudo ufw allow 22
+```
+
+Then make sure your VM is in Bridged mode (in VMWare settings, go to player > manage > virtual machine settings and your networking should be bridged). If not, change this and restart your laptop.
+
+Find your IP address for your VM:
+```sh
+sudo apt-get install net-tools
+ifconfig
+```
+
+After inet is the ipaddress to connect to. You can verify the ssh is working by doing `ssh user@IP` or something like `ssh user@10.0.0.60`.
+
+Here's a reference for connecting to SSH on VS code (and forwarding a port): https://code.visualstudio.com/docs/remote/ssh
