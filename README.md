@@ -127,6 +127,10 @@ ifconfig
 
 After inet is the ipaddress to connect to. You can verify the ssh is working by doing `ssh user@IP` or something like `ssh user@10.0.0.60`.
 
+To verify that this is working, do ssh user@IP and it should ask you for your password. To troubleshoot SSH, try doing `ssh -v ubuntu@IP` to see which private keys it's trying to use to authenticate. 
+
+Then, go ahead and connect through VS code.
+
 ### Mac (multipass)
 
 In your multipass shell:
@@ -141,9 +145,9 @@ sudo apt-get install net-tools
 ifconfig
 ```
 
-Now, from your Mac terminal, you want to get a public key from your .ssh directory (ls ~/.ssh) and choose a .pub file. Then do `cat ~/.ssh/whateveritscalled.pub`
+Now, from your Mac terminal, you want to get a public key from your .ssh directory (ls ~/.ssh) and choose a .pub file. Then do `cat ~/.ssh/whateveritscalled.pub` and that's your public key! You'll need this (the whole output) in the next step.
 
-Finally, in the multipass shell, do:
+In the multipass shell, do:
 ```sh
 sudo echo "ssh-something .... FULL PUBLIC KEY... ubuntu@virtmach" > ~/.ssh/authorized_keys
 sudo chmod 700 ~/.ssh
@@ -152,8 +156,6 @@ sudo chmod 600 ~/.ssh/authorized_keys
 
 This makes it so that your Mac is authorized to connect to your virtual machine.
 
-Finally, let's find the IP address for your VM (it's an IP4 address after inet, and not 127.0.0.1):
-```sh
-sudo apt-get install net-tools
-ifconfig
-```
+To verify that this is working, do ssh ubuntu@IP and it shouldn't even ask you for a password. To troubleshoot SSH, try doing `ssh -v ubuntu@IP` to see which private keys it's trying to use to authenticate. 
+
+Then, go ahead and connect through VS code.
