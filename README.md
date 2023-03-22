@@ -107,6 +107,10 @@ Instead, we will:
 
 Remember, to do any of this your VM must be on to accept the SSH connection.
 
+Here's a reference for connecting to SSH on VS code (and forwarding a port): https://code.visualstudio.com/docs/remote/ssh
+
+### Windows VMWare
+
 In VMWare (windows):
 ```sh
 sudo apt-get install openssh-server
@@ -123,4 +127,33 @@ ifconfig
 
 After inet is the ipaddress to connect to. You can verify the ssh is working by doing `ssh user@IP` or something like `ssh user@10.0.0.60`.
 
-Here's a reference for connecting to SSH on VS code (and forwarding a port): https://code.visualstudio.com/docs/remote/ssh
+### Mac (multipass)
+
+In your multipass shell:
+```sh
+sudo apt-get install openssh-server
+sudo ufw allow 22
+```
+
+Again in your multipass shell, find your IP address for your VM (it's an IP4 address after inet, and not 127.0.0.1):
+```sh
+sudo apt-get install net-tools
+ifconfig
+```
+
+Now, from your Mac terminal, you want to get a public key from your .ssh directory (ls ~/.ssh) and choose a .pub file. Then do `cat ~/.ssh/whateveritscalled.pub`
+
+Finally, in the multipass shell, do:
+```sh
+sudo echo "ssh-something .... FULL PUBLIC KEY... ubuntu@virtmach" > ~/.ssh/authorized_keys
+sudo chmod 700 ~/.ssh
+sudo chmod 600 ~/.ssh/authorized_keys
+```
+
+This makes it so that your Mac is authorized to connect to your virtual machine.
+
+Finally, let's find the IP address for your VM (it's an IP4 address after inet, and not 127.0.0.1):
+```sh
+sudo apt-get install net-tools
+ifconfig
+```
