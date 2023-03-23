@@ -161,6 +161,20 @@ def updateUserDetails():
             target.set_full(request.form['membership'])
         db.session.commit()
         return json.dumps(request.form)
+    
+@lloyd.route('/addUserDetails',methods=['POST'])
+@login_required
+def addUserDetails():
+    if not current_user.is_admin:
+        return "Failed"
+    
+    firstname = request.form['firstname'].title()
+    lastname = request.form['lastname'].title()
+        
+    user = User(username=request.form['firstname']+request.form['lastname'], year=request.form['year'], membership=request.form['membership'], firstname=firstname, lastname=lastname, nickname=request.form['nickname'], address=request.form['address'], major=request.form['major'], email=request.form['email'], cellphone=request.form['cellphone'], birthday=request.form['birthday'])
+    db.session.add(user)
+    db.session.commit()
+    return json.dumps(request.form)
 
 # @lloyd.route('/pong')
 # @login_required
