@@ -1,17 +1,18 @@
 /*!
  * Start Bootstrap - Agency v1.1.0 (http://startbootstrap.com/template-overviews/agency)
  * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ * Licensed under MIT (https://github.com/whiterockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 body {
   overflow-x: hidden;
-  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: gold;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #1C1B19;
+  color: #eee;
+  padding-top: 100px;
 }
 
 #calendar {
   font-size: 14px;
-  background: gold;
   max-width: 800px;
   padding: 50px;
   margin: 0 auto;
@@ -21,7 +22,7 @@ body {
   color: #777777;
 }
 .text-primary {
-  color: #fed136;
+  color: #FCD367;
 }
 
 p {
@@ -41,8 +42,8 @@ a.active {
   outline: none;
 }
 a {
-  /*color: #fed136;*/
-  color: black;
+  /*color: #FCD367;*/
+  color: white;
 }
 a:hover,
 a:focus,
@@ -59,21 +60,22 @@ h6 {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
+  color: #fff;
 }
 
 .img-centered {
   margin: 0 auto;
 }
 .bg-light-gray {
-  background-color: #eeeeee;
+  background-color: #222222;
 }
 .bg-darkest-gray {
-  background-color: #222222;
+  background-color: #dddddd;
 }
 .btn-primary {
   color: white;
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #FCD367;
+  border-color: #FCD367;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
@@ -107,17 +109,17 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #FCD367;
+  border-color: #FCD367;
 }
 .btn-primary .badge {
-  color: #fed136;
+  color: #FCD367;
   background-color: white;
 }
 .btn-xl {
-  color: black;
-  background-color: #fed136;
-  border-color: #fed136;
+  color: white;
+  background-color: #FCD367;
+  border-color: #FCD367;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
@@ -154,11 +156,11 @@ fieldset[disabled] .btn-xl:active,
 .btn-xl.disabled.active,
 .btn-xl[disabled].active,
 fieldset[disabled] .btn-xl.active {
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #FCD367;
+  border-color: #FCD367;
 }
 .btn-xl .badge {
-  color: #fed136;
+  color: #FCD367;
   background-color: white;
 }
 
@@ -169,11 +171,12 @@ div.calendar {
 }
 
 .navbar-custom {
-  background-color: #222222;
+  background-color: black;
+  opacity: 0.8;
   border-color: transparent;
 }
 .navbar-custom .navbar-brand {
-  color: #fed136;
+  color: #FCD367;
   /*font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;*/
 }
 .navbar-custom .navbar-brand:hover,
@@ -183,11 +186,11 @@ div.calendar {
   color: #fec503;
 }
 .navbar-custom .navbar-collapse {
-  border-color: rgba(255, 255, 255, 0.02);
+  border-color: rgba(0, 0, 0, 0.9);
 }
 .navbar-custom .navbar-toggle {
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #FCD367;
+  border-color: #FCD367;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   color: white;
@@ -195,7 +198,7 @@ div.calendar {
 }
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
-  background-color: #fed136;
+  background-color: #FCD367;
 }
 .navbar-custom .nav li a {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -206,13 +209,13 @@ div.calendar {
 }
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: #fed136;
+  color: #FCD367;
   outline: none;
 }
 .navbar-custom .navbar-nav > .active > a {
   border-radius: 0;
   color: white;
-  background-color: #fed136;
+  background-color: #FCD367;
 }
 .navbar-custom .navbar-nav > .active > a:hover,
 .navbar-custom .navbar-nav > .active > a:focus {
@@ -239,7 +242,8 @@ div.calendar {
 }
 @media (min-width: 768px) {
   .navbar-custom.affix {
-    background-color: #222222;
+    background-color: #000;
+    opacity: 0.7;
     padding: 10px 0;
   }
   .navbar-custom.affix .navbar-brand {
@@ -253,7 +257,7 @@ div.calendar {
 }
 
 .navbar-custom-calendar {
-  background-color: #222222;
+  background-color: #dddddd;
   /* It might be worth decreasing the padding here. It looks really thick to my eyes. */
 }
 
@@ -270,7 +274,7 @@ header {
   color: white;
 }
 header .intro-text {
-  padding-top: 100px;
+  padding-top: 0px;
   padding-bottom: 50px;
 }
 header .intro-text .intro-lead-in {
@@ -453,7 +457,7 @@ section h3.section-subheading {
   height: 80px;
   position: absolute;
   z-index: 100;
-  background-color: #fed136;
+  background-color: #FCD367;
   color: white;
   border-radius: 100%;
   border: 7px solid #f1f1f1;
@@ -586,7 +590,7 @@ aside.clients img {
   margin: 50px auto;
 }
 section#contact {
-  background-color: #222222;
+  background-color: #dddddd;
   background-image: url('../img/map-image.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -608,7 +612,7 @@ section#contact .form-group textarea.form-control {
   height: 236px;
 }
 section#contact .form-control:focus {
-  border-color: #fed136;
+  border-color: #FCD367;
   box-shadow: none;
 }
 section#contact ::-webkit-input-placeholder {
@@ -643,7 +647,6 @@ section#contact .text-danger {
 footer {
   display: block;
   position: relative;
-  background-color: black;
   color: gold;
   padding: 15px 0;
   text-align: center;
@@ -666,7 +669,7 @@ ul.social-buttons {
 }
 ul.social-buttons li a {
   display: block;
-  background-color: #222222;
+  background-color: #dddddd;
   height: 40px;
   width: 40px;
   border-radius: 100%;
@@ -681,7 +684,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-  background-color: #fed136;
+  background-color: #FCD367;
 }
 .btn:focus,
 .btn:active,
@@ -735,7 +738,7 @@ ul.social-buttons li a:active {
   height: 75px;
   width: 1px;
   margin-left: 35px;
-  background-color: #222222;
+  background-color: #dddddd;
   transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   /* IE 9 */
@@ -746,7 +749,7 @@ ul.social-buttons li a:active {
 .portfolio-modal .close-modal .lr .rl {
   height: 75px;
   width: 1px;
-  background-color: #222222;
+  background-color: #dddddd;
   transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   /* IE 9 */
@@ -760,11 +763,11 @@ ul.social-buttons li a:active {
 }
 ::-moz-selection {
   text-shadow: none;
-  background: #fed136;
+  background: #FCD367;
 }
 ::selection {
   text-shadow: none;
-  background: #fed136;
+  background: #FCD367;
 }
 img::selection {
   background: transparent;
@@ -774,7 +777,7 @@ img::-moz-selection {
 }
 html, body {
   height: 100%;
-  webkit-tap-highlight-color: #fed136;
+  webkit-tap-highlight-color: #FCD367;
 }
 .container-calendar {
   padding-top: 50px;
@@ -786,9 +789,10 @@ html, body {
   padding-top: 20px;
   font-size: 22pt;
   font-weight: bold;
+  color: #dddddd;
 }
 #bylawsubtitle{
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid white;
   font-size: 12pt;
   font-style: italic;
   margin-bottom: 20pt;
@@ -796,14 +800,14 @@ html, body {
 }
 .bylawsection {
   font-size: 16pt;
-  color: black;
+  color: white;
   padding-top: 1px;
 }
 .bylawcontent {
   font-size: 12pt;
   padding-left: 70px;
   padding-right: 70px;
-  color: black;
+  color: white;
 }
 
 table.contactTable {
@@ -819,5 +823,3 @@ tr.contactHeader {
   font-size: 12pt;
   font-style:bold;
 }
-
-body { padding-top: 100px; }
