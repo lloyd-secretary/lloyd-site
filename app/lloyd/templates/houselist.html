@@ -44,12 +44,54 @@ function updateMembership() {
         }
     })
 }
+
+function addMember() {
+	year = $("#addYear").val()
+	membership = $("#addMembership").val()
+	firstname = $("#addFirstName").val()
+	lastname = $("#addLastName").val()
+	nickname = $("#addNickname").val()
+	address = $("#addRoom").val()
+	major = $("#addMajor").val()
+	email = $("#addEmail").val()
+	cellphone = $("#addCellPhone").val()
+	birthday = $("#addBirthday").val()
+	$.ajax({
+		url: '/lloyd/addUserDetails',
+		data: {
+			year: year,
+			membership: membership,
+			firstname: firstname,
+			nickname: nickname,
+			lastname: lastname,
+			address: address,
+			major: major,
+			email: email,
+			cellphone: cellphone,
+			birthday: birthday
+		},
+		type: 'POST',
+		success: function(res) {
+			location.reload();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+	})
+}
 </script>
 
 {% endif %}
 
 <div class="container table-responsive" id="houselist">
 	<h1>Lloyd Houselist <input class="search" placeholder="search" /> </h1>
+	{% if is_admin == True %}
+	<h4>
+		<a data-toggle="modal" data-target="#addModal">
+			<span class="glyphicon glyphicon-pencil" style="margin-right: 0.75rem;"></span>Add Member
+		</a>
+	</h4>
+	{% endif %}
 	  
 	<table align="center" class="table table-bordered table-hover">
 		<thead class="thead-inverse">
@@ -115,6 +157,67 @@ function updateMembership() {
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" id="btnUpdate" class="btn btn-primary" onclick="updateMembership()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="addModalLabel">Add Member</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Year:</label>
+						<select class="form-control" id="addYear">
+							<option value="RA">RA</option>
+							<option value="SS">Super Senior</option>
+							<option value="Sr">Senior</option>
+							<option value="Jr">Junior</option>
+							<option value="So">Sophomore</option>
+							<option value="Fr">Freshman</option>
+						</select>
+						<br>
+						<label for="recipient-name" class="control-label">House Membership:</label>
+						<select class="form-control" id="addMembership">
+							<option value="f">Full</option>
+							<option value="s">Social</option>
+						</select>
+						<br>
+						<label for="recipient-name" class="control-label">First Name:</label>
+						<input class="form-control" id="addFirstName" onkeydown="/[a-z]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Last Name:</label>
+						<input class="form-control" id="addLastName" onkeydown="/[a-z]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Nickname:</label>
+						<input class="form-control" id="addNickname" onkeydown="/[a-z]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Room:</label>
+						<input class="form-control" id="addRoom" onkeydown="/[a-z0-9]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Major:</label>
+						<input class="form-control" id="addMajor" onkeydown="/[a-z]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Email:</label>
+						<input class="form-control" id="addEmail" onkeydown="/[a-z0-9@.]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Cell Phone:</label>
+						<input class="form-control" id="addCellPhone" onkeypress="/[0-9]/i.test(event.key)">
+						<br>
+						<label for="recipient-name" class="control-label">Birthday:</label>
+						<input type="date" class="form-control" id="addBirthday" value=null>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnAdd" class="btn btn-primary" onclick="addMember()">Add</button>
             </div>
         </div>
     </div>
