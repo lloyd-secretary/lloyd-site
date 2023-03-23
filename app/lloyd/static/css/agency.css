@@ -177,8 +177,12 @@ div.calendar {
 }
 .navbar-custom .navbar-brand {
   color: #FCD367;
+<<<<<<< HEAD
   font-weight: bold;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+=======
+  /*font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;*/
+>>>>>>> Experimenting with new black theme
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
@@ -851,6 +855,7 @@ tr.contactHeader {
   font-size: 12pt;
   font-style:bold;
 }
+<<<<<<< HEAD
 
 /* this is creating the underlines for the menu items */
 #menu-buttons > li > div {
@@ -866,3 +871,5 @@ tr.contactHeader {
   background-color: gold;
   width: 100%;
 }
+=======
+>>>>>>> Experimenting with new black theme
