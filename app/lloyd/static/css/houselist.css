@@ -1,0 +1,54 @@
+#houselisttable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+    border: 0px;
+}
+
+#houselisttable th,
+#houselisttable td {
+    padding: 10px 15px;
+    border: 0px;
+}
+
+#houselisttable thead tr {
+    border: 0px;
+    background-color: #FCD367;
+    color: #1C1B19;
+    font-weight: bold;
+    text-align: left;
+    border-radius: 20px;
+}
+
+#houselisttable thead td:first-child {
+    border-radius: 15px 0 0 0;
+}
+#houselisttable thead td:last-child {
+    border-radius: 0 15px 0 0;
+}
+
+#houselisttable tbody tr {
+    border: 0px;
+    border-bottom: 1px solid #1C1B19;
+}
+#houselisttable tbody tr td{
+    border: 0px;
+}
+
+#houselisttable tbody tr:nth-of-type(even) {
+    background-color: #333;
+}
+#houselisttable tbody tr:nth-of-type(odd) {
+    background-color: #222;
+}
+
+#houselisttable tbody tr:last-of-type {
+    border-bottom: 2px solid #FCD367;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    background-color: #333;
+    color: #FCD367;
+}
