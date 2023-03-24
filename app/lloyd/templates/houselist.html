@@ -79,6 +79,23 @@ function addMember() {
         }
 	})
 }
+
+function removeMember() {
+	email = $("#editModalLabel").text()
+	$.ajax({
+		url: '/lloyd/removeUser',
+		data: {
+			email: email
+		},
+		type: 'POST',
+		success: function(res) {
+			location.reload();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+	})
+}
 </script>
 
 {% endif %}
@@ -88,7 +105,7 @@ function addMember() {
 	{% if is_admin == True %}
 	<h4>
 		<a data-toggle="modal" data-target="#addModal">
-			<span class="glyphicon glyphicon-pencil" style="margin-right: 0.75rem;"></span>Add Member
+			<span class="glyphicon glyphicon-user" style="margin-right: 0.75rem;"></span>Add Member
 		</a>
 	</h4>
 	{% endif %}
@@ -107,6 +124,7 @@ function addMember() {
 				<td class="sort" data-sort="phone">Phone</button></td>
 				<td class="sort" data-sort="birthday">Birthday</button></td>
 				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit</td> {% endif %}
+				{% if is_admin == True %} <td class="sort" data-sort="edit">Remove</td> {% endif %}
 			</tr>	
 		</thead>		
 		<tbody class="list">
@@ -126,9 +144,12 @@ function addMember() {
 					<td class="edit">
 						<a data-toggle="modal" data-target="#editModal" data-id="{{p.email}}" data-memb="{{p.membership}}" onclick="edit(this)"><span class="glyphicon glyphicon-pencil"></span></a>
 					</td> 
+					<td class="remove">
+						<a data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="edit(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
+					</td> 
 					{% endif %}
 				</tr i>
-			{% endfor %}	
+			{% endfor %}
 		</tbody>
 	</table>
 </div>
@@ -162,6 +183,25 @@ function addMember() {
     </div>
 </div>
 
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="removeModalLabel">Remove Member</h4>
+            </div>
+            <div class="modal-body">
+                Remove member?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnUpdate" class="btn btn-primary" onclick="removeMember()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -190,10 +230,10 @@ function addMember() {
 						</select>
 						<br>
 						<label for="recipient-name" class="control-label">First Name:</label>
-						<input class="form-control" id="addFirstName" onkeydown="/[a-z]/i.test(event.key)">
+						<input class="form-control" id="addFirstName" onkeydown="/[a-z]/i.test(event.key)" required>
 						<br>
 						<label for="recipient-name" class="control-label">Last Name:</label>
-						<input class="form-control" id="addLastName" onkeydown="/[a-z]/i.test(event.key)">
+						<input class="form-control" id="addLastName" onkeydown="/[a-z]/i.test(event.key)" required>
 						<br>
 						<label for="recipient-name" class="control-label">Nickname:</label>
 						<input class="form-control" id="addNickname" onkeydown="/[a-z]/i.test(event.key)">
@@ -205,7 +245,7 @@ function addMember() {
 						<input class="form-control" id="addMajor" onkeydown="/[a-z]/i.test(event.key)">
 						<br>
 						<label for="recipient-name" class="control-label">Email:</label>
-						<input class="form-control" id="addEmail" onkeydown="/[a-z0-9@.]/i.test(event.key)">
+						<input class="form-control" id="addEmail" onkeydown="/[a-z0-9@.]/i.test(event.key)" required>
 						<br>
 						<label for="recipient-name" class="control-label">Cell Phone:</label>
 						<input class="form-control" id="addCellPhone" onkeypress="/[0-9]/i.test(event.key)">
