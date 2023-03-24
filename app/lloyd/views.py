@@ -170,9 +170,23 @@ def addUserDetails():
     
     firstname = request.form['firstname'].title()
     lastname = request.form['lastname'].title()
+    birthday = request.form['birthday']
+    if birthday == "":
+        birthday = u'0000-00-00'
         
-    user = User(username=request.form['firstname']+request.form['lastname'], year=request.form['year'], membership=request.form['membership'], firstname=firstname, lastname=lastname, nickname=request.form['nickname'], address=request.form['address'], major=request.form['major'], email=request.form['email'], cellphone=request.form['cellphone'], birthday=request.form['birthday'])
+    user = User(username=request.form['firstname']+request.form['lastname'], year=request.form['year'], membership=request.form['membership'], firstname=firstname, lastname=lastname, nickname=request.form['nickname'], address=request.form['address'], major=request.form['major'], email=request.form['email'], cellphone=request.form['cellphone'], birthday=birthday)
     db.session.add(user)
+    db.session.commit()
+    return json.dumps(request.form)
+
+@lloyd.route('/removeUser',methods=['POST'])
+@login_required
+def removeUser():
+    if not current_user.is_admin:
+        return "Failed"
+
+    email = request.form['email']
+    User.query.filter_by(email=email).delete()
     db.session.commit()
     return json.dumps(request.form)
 
