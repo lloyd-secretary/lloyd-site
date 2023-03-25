@@ -19,7 +19,7 @@ body {
 }
 
 .text-muted {
-  color: #777777;
+  color: #bbb;
 }
 .text-primary {
   color: #FCD367;
@@ -177,7 +177,8 @@ div.calendar {
 }
 .navbar-custom .navbar-brand {
   color: #FCD367;
-  /*font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;*/
+  font-weight: bold;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
@@ -437,6 +438,7 @@ section h3.section-subheading {
   padding: 0 20px 0 100px;
   position: relative;
   text-align: left;
+  margin: auto;
 }
 .timeline > li .timeline-panel:before {
   border-left-width: 0;
@@ -467,6 +469,12 @@ section h3.section-subheading {
   font-size: 10px;
   margin-top: 12px;
   line-height: 14px;
+}
+.timeline > li .timeline-image {
+  transition: 0.25s;
+}
+.timeline > li .timeline-image:hover {
+  scale: 1.2;
 }
 .timeline > li.timeline-inverted > .timeline-panel {
   float: right;
@@ -499,6 +507,24 @@ section h3.section-subheading {
 .timeline .timeline-body > ul {
   margin-bottom: 0;
 }
+.timeline-inverted > .timeline-panel, 
+.timeline > .timeline-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.timeline-inverted > .timeline-panel > .timeline-heading > p,
+.timeline-inverted > .timeline-panel > .timeline-body > p {
+  text-indent: 0px;
+} 
+#link-to-more {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+#link-to-more > h4 {
+  margin: 0;
+}
 @media (min-width: 768px) {
   .timeline:before {
     left: 50%;
@@ -530,6 +556,8 @@ section h3.section-subheading {
     padding: 0 30px 20px 20px;
   }
 }
+
+
 @media (min-width: 992px) {
   .timeline > li {
     min-height: 150px;
@@ -822,4 +850,19 @@ table.contactTable {
 tr.contactHeader {
   font-size: 12pt;
   font-style:bold;
+}
+
+/* this is creating the underlines for the menu items */
+#menu-buttons > li > div {
+  background-color: gold;
+  height: 4px;
+  width: 0%;
+  transition: 0.5s;
+  transition-delay: 0.1s; /* avoid a slight hover causing underline */
+  margin-top: -7px;
+}
+
+#menu-buttons > li:hover > div {
+  background-color: gold;
+  width: 100%;
 }
