@@ -26,6 +26,29 @@ function edit(elm) {
         }
     })
 }
+
+function remove(elm) {
+	$.ajax({
+        url: '/lloyd/getUserDetails',
+		xhrFields: {
+			withCredentials: true
+		},
+        data: {
+            email: $(elm).attr('data-id')
+        },
+        type: 'POST',
+        success: function(res) {
+            data = JSON.parse(res);
+			if (data.email) {
+				$("#removeModalLabel").text($(elm).attr('data-id'));
+			}
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    })
+}
+
 function updateMembership() {
 	email = $("#editModalLabel").text()
 	membership = $("#editMembership").val()
@@ -145,7 +168,7 @@ function removeMember() {
 						<a data-toggle="modal" data-target="#editModal" data-id="{{p.email}}" data-memb="{{p.membership}}" onclick="edit(this)"><span class="glyphicon glyphicon-pencil"></span></a>
 					</td> 
 					<td class="remove">
-						<a data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="edit(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
+						<a data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="remove(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
 					</td> 
 					{% endif %}
 				</tr i>
