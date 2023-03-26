@@ -96,6 +96,8 @@ python run.py
 
 Now you can access the website at `https://127.0.0.1:5000` (check in the VM, and when it gives you an HTTPS warning, just ignore and continue anyway).
 
+If you're curious about how SSL is set up in the actual server, apache2 is given our SSL configuration and handles HTTPS (so we don't do it from Flask). We generate our files with getssl (https://github.com/srvrco/getssl) with `getssl lloyd.caltech.edu`.
+
 ## Editing files
 
 You can always edit files directly from nano or vim, or gedit, but those might get annoying and it might be slow to edit directly from the virtual machine at all.
