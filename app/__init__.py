@@ -35,5 +35,11 @@ app.register_blueprint(rotation, url_prefix='/rotation')
 def route_root():
 	return redirect(url_for('lloyd.index'))
 
+# for setting up SSL, needed to verify we own lloyd.caltech.edu
+# see README for setting up SSL
+@app.route('/.well-known/acme-challenge/<var>')
+def route_acme(var):
+        return send_from_directory("/var/www/app/lloyd/static/acme-challenge/",var)
+
 from lloyd import views
 from rotation import views

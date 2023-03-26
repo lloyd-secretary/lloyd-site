@@ -88,11 +88,15 @@ GRANT ALL PRIVILEGES ON rotation.* TO web@localhost;
 
 Set `production = False` in `app/__init__.py` (please don't commit changes with this file having production = False, pull requests will be rejected).
 
-The previous change will make it so that when you change a template file or something, it will automatically reload the file when you reload, which makes testing frontend really easy!
+We need this so that it knows it's not on the true server and doesn't go looking for our SSL files. The previous change will also make it so that when you change a template file or something, it will automatically reload the file when you reload, which makes testing frontend really easy!
 
 ```bash
 python run.py
 ```
+
+Now you can access the website at `https://127.0.0.1:5000` (check in the VM, and when it gives you an HTTPS warning, just ignore and continue anyway).
+
+If you're curious about how SSL is set up in the actual server, apache2 is given our SSL configuration and handles HTTPS (so we don't do it from Flask). We generate our files with getssl (https://github.com/srvrco/getssl) with `getssl lloyd.caltech.edu`.
 
 ## Editing files
 
