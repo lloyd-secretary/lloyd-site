@@ -172,3 +172,8 @@ def updateUserDetails():
 @login_required
 def minutes():
     return render_template("minutes.html")
+
+@lloyd.route('/lloydgpt')
+@login_required
+def lloydgpt():
+    return render_template("lloydgpt.html")

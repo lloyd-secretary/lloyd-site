@@ -63,13 +63,16 @@
                     </li>
                     <li>
                         <a href="{{ url_for('lloyd.contact') }}">Contact</a>
-		    </li>
-		    <li>
-			<a href="{{ url_for('lloyd.minutes') }}">Resources</a>
-		    </li>
-		    <li>
-			<a href="{{ url_for('lloyd.account') }}">Account</a>
-	            </li>
+                    </li>
+                    <li>
+                    <a href="{{ url_for('lloyd.minutes') }}">Resources</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('lloyd.lloydgpt') }}">FAQ</a>
+                    </li>
+                    <li>
+                    <a href="{{ url_for('lloyd.account') }}">Account</a>
+                    </li>
                     <li>
                         {% if g.user.is_authenticated %}
                         <a style="color: red;" href="{{ url_for('lloyd.logout') }}">Logout</a>
