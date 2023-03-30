@@ -273,8 +273,8 @@ function removeMember() {
 						<label for="recipient-name" class="control-label">Cell Phone:</label>
 						<input class="form-control" id="addCellPhone" onkeypress="/[0-9]/i.test(event.key)"/>
 						<br>
-						<label for="recipient-name" class="control-label">Birthday:</label>
-						<input type="date" class="form-control" id="addBirthday" value=null />
+						<label for="recipient-name" class="control-label">Birthday: *</label>
+						<input type="date" class="form-control" id="addBirthday" value=null required />
                     </div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
