@@ -234,7 +234,7 @@ function removeMember() {
                 <h4 class="modal-title" id="addModalLabel">Add Member</h4>
             </div>
             <div class="modal-body">
-                <form role="form">
+                <form role="form" onsubmit="addMember()">
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Year:</label>
 						<select class="form-control" id="addYear">
@@ -252,35 +252,35 @@ function removeMember() {
 							<option value="s">Social</option>
 						</select>
 						<br>
-						<label for="recipient-name" class="control-label">First Name:</label>
-						<input class="form-control" id="addFirstName" onkeydown="/[a-z]/i.test(event.key)" required>
+						<label for="recipient-name" class="control-label">First Name: *</label>
+						<input class="form-control" id="addFirstName" onkeydown="/[a-z]/i.test(event.key)" required />
 						<br>
-						<label for="recipient-name" class="control-label">Last Name:</label>
-						<input class="form-control" id="addLastName" onkeydown="/[a-z]/i.test(event.key)" required>
+						<label for="recipient-name" class="control-label">Last Name: *</label>
+						<input class="form-control" id="addLastName" onkeydown="/[a-z]/i.test(event.key)" required />
 						<br>
 						<label for="recipient-name" class="control-label">Nickname:</label>
-						<input class="form-control" id="addNickname" onkeydown="/[a-z]/i.test(event.key)">
+						<input class="form-control" id="addNickname" onkeydown="/[a-z]/i.test(event.key)"/>
 						<br>
 						<label for="recipient-name" class="control-label">Room:</label>
-						<input class="form-control" id="addRoom" onkeydown="/[a-z0-9]/i.test(event.key)">
+						<input class="form-control" id="addRoom" onkeydown="/[a-z0-9]/i.test(event.key)"/>
 						<br>
 						<label for="recipient-name" class="control-label">Major:</label>
-						<input class="form-control" id="addMajor" onkeydown="/[a-z]/i.test(event.key)">
+						<input class="form-control" id="addMajor" onkeydown="/[a-z]/i.test(event.key)"/>
 						<br>
-						<label for="recipient-name" class="control-label">Email:</label>
-						<input class="form-control" id="addEmail" onkeydown="/[a-z0-9@.]/i.test(event.key)" required>
+						<label for="recipient-name" class="control-label">Email: *</label>
+						<input class="form-control" id="addEmail" onkeydown="/[a-z0-9@.]/i.test(event.key)" required />
 						<br>
 						<label for="recipient-name" class="control-label">Cell Phone:</label>
-						<input class="form-control" id="addCellPhone" onkeypress="/[0-9]/i.test(event.key)">
+						<input class="form-control" id="addCellPhone" onkeypress="/[0-9]/i.test(event.key)"/>
 						<br>
 						<label for="recipient-name" class="control-label">Birthday:</label>
-						<input type="date" class="form-control" id="addBirthday" value=null>
+						<input type="date" class="form-control" id="addBirthday" value=null />
                     </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" id="btnAdd" class="btn btn-primary">Add</button>
+					</div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="btnAdd" class="btn btn-primary" onclick="addMember()">Add</button>
             </div>
         </div>
     </div>
