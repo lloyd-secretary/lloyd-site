@@ -104,7 +104,7 @@ function addMember() {
 }
 
 function removeMember() {
-	email = $("#editModalLabel").text()
+	email = $("#removeModalLabel").text()
 	$.ajax({
 		url: '/lloyd/removeUser',
 		data: {
