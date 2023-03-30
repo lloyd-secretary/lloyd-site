@@ -85,3 +85,16 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-03-13  2:06:59
+
+CREATE TABLE qna (
+    question_id SERIAL PRIMARY KEY,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL,
+    embedding TEXT,
+    tokens INT
+);
+
+INSERT INTO qna (question, answer) VALUES 
+    ("When are quiet hours?", "Quiet hours are after 2AM on Fridays and Saturdays and after midnight otherwise. It's okay to ask your neighbors or people in the hall to be quiet during quiet hours! You can also talk to your LASR and they can take care of it for you."),
+    ("How does someone become a social Lloydie?", "You will need to attend a house dinner (where you should be invited by a current Lloydie). There, they will announce you and you need to say you are running for a social. Then, you need to fill out the membership application and will be added to the next member elections. A quorum is needed of one-third of the house, so be sure to convince people to vote!"),
+    ("How do I drop my full membership to a social?", "Talk to the secretary (messenger or email secretary@lloyd.caltech.edu). There is no process needed to downgrade a membership, but be aware that to get a membership back, you need to go through member elections again.");

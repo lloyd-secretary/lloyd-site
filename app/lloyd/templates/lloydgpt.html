@@ -1,0 +1,68 @@
+{%extends "base.html" %}
+{% block content %}
+
+<link href="{{ url_for('.static', filename='css/lloydgpt.css')}}" rel="stylesheet">
+
+
+	<div class="container" id="gptTextSubmission">
+      <h1>LloydGPT</h1>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+          {% for message in messages %}
+              <li style="color: red;">{{ message }} </li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <br>
+        <div class="form-group">
+          <form action="" method="post" id="gptTextSubmissionForm">
+              <label for="query">Enter your query:</label>
+            <textarea class="form-control" name="query"></textarea>
+            <input class="btn btn-default" type="submit" value="Submit">
+          </form>
+          <br>
+        </div>
+
+      {% if questions %}
+      <div class="faq-container">
+            {% for q in questions %}
+                <div class="faq{{loop.index}}">
+                    <h1 class="faq-page">
+                        {{ q.question }}
+                    </h1>
+                    <div class="faq-body">
+                        <p> {{ q.answer }} </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+    
+
+    <script>
+        var faq = document.getElementsByClassName("faq-page");
+        var i;
+        for (i = 0; i < faq.length; i++) {
+            faq[i].addEventListener("click", function () {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+                this.classList.toggle("active");
+                /* Toggle between hiding and showing the active panel */
+                var body = this.nextElementSibling;
+                if (body.style.display === "block") {
+                    body.style.display = "none";
+                } else {
+                    body.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+{% endblock %}

@@ -102,6 +102,15 @@ class Feedback(db.Model):
             'timestamp': None,
         }
 
+
+class QnA(db.Model):
+    __tablename__ = 'qna'
+
+    def __init__(self, question, answer):
+        self.question = question
+        self.answer = answer
+
+
 #class Dinner(db.Model):
 #    __tablename__ = 'dinners'
 #    __bind_key__ = 'rotation'

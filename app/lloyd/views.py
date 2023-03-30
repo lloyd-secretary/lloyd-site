@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_required, current_user, login_user, logout_user
 from . import lloyd
 from .. import db, login_manager
-from ..models import User
+from ..models import User, QnA
 from .forms import *
 import json
 import datetime
@@ -172,3 +172,9 @@ def updateUserDetails():
 @login_required
 def minutes():
     return render_template("minutes.html")
+
+@lloyd.route('/lloydgpt', methods=['GET', 'POST'])
+@login_required
+def lloydgpt():
+    questions = QnA.query.all()
+    return render_template("lloydgpt.html", questions=questions)
