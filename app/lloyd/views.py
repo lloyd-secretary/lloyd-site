@@ -7,6 +7,20 @@ from .forms import *
 import json
 import datetime
 import re
+from oauthlib.oauth2 import WebApplicationClient
+import requests
+import unicodedata
+import secrets
+
+GOOGLE_CLIENT_ID = secrets.Google_ID
+GOOGLE_CLIENT_SECRET = secrets.Google_Client
+GOOGLE_DISCOVERY_URL = secrets.Google_URL
+
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
+
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
 
 @lloyd.route('/')
 @lloyd.route('/index')
@@ -36,6 +50,65 @@ def login():
         flash('Incorrect username and password combination')
         render_template('login.html', form=form)
     return render_template('login.html', form=form)
+
+@lloyd.route('/Glogin', methods=['GET', 'POST'])
+def Glogin():
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+
+    # Use library to construct the request for Google login and provide
+    # scopes that let you retrieve user's profile from Google
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=request.base_url + "/callback",
+        scope=["openid", "email", "profile"],
+    )
+    return redirect(request_uri)
+
+@lloyd.route("/Glogin/callback")
+def callback():
+    # Get authorization code Google sent back to you
+    code = request.args.get("code")
+
+    # Find out what URL to hit to get tokens that allow you to ask for
+    # things on behalf of a user
+    google_provider_cfg = get_google_provider_cfg()
+    token_endpoint = google_provider_cfg["token_endpoint"]
+
+    # Prepare and send a request to get tokens
+    token_url, headers, body = client.prepare_token_request(
+        token_endpoint,
+        authorization_response=request.url,
+        redirect_url=request.base_url,
+        code=code
+    )
+
+    token_response = requests.post(
+        token_url,
+        headers=headers,
+        data=body,
+        auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
+    )
+
+    # Parse the tokens!
+    client.parse_request_body_response(json.dumps(token_response.json()))
+
+    # Gets users information based on the tokens
+    userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+    uri, headers, body = client.add_token(userinfo_endpoint)
+    userinfo_response = requests.get(uri, headers=headers, data=body)
+
+    # Verify user email and get email address
+    if userinfo_response.json().get("email_verified"):
+        users_email = userinfo_response.json()["email"]
+    
+    user = User.query.filter_by(email=users_email).first()
+    if user is not None:
+        login_user(user)
+        return redirect(url_for('lloyd.index'))
+    else:
+        flash("Email not recognized, contact Lloyd secretary to reset email")
+        return redirect(url_for('lloyd.login'))  
 
 @lloyd.route('/logout')
 def logout():
