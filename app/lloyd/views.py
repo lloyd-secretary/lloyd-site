@@ -6,6 +6,7 @@ from ..models import User
 from .forms import *
 import json
 import datetime
+import re
 
 @lloyd.route('/')
 @lloyd.route('/index')
@@ -161,6 +162,36 @@ def updateUserDetails():
             target.set_full(request.form['membership'])
         db.session.commit()
         return json.dumps(request.form)
+    
+@lloyd.route('/addUserDetails',methods=['POST'])
+@login_required
+def addUserDetails():
+    if not current_user.is_admin:
+        return "Failed"
+    
+    username = re.sub("[^A-Za-z]", "", (request.form['firstname']+request.form['lastname']).lower())
+    firstname = request.form['firstname'].title()
+    lastname = request.form['lastname'].title()
+    email = request.form['email'].lower()
+    birthday = request.form['birthday']
+    if birthday == "":
+        birthday = u'0000-00-00'
+        
+    user = User(username=username, year=request.form['year'], membership=request.form['membership'], firstname=firstname, lastname=lastname, nickname=request.form['nickname'], address=request.form['address'], major=request.form['major'], email=email, cellphone=request.form['cellphone'], birthday=birthday)
+    db.session.add(user)
+    db.session.commit()
+    return json.dumps(request.form)
+
+@lloyd.route('/removeUser',methods=['POST'])
+@login_required
+def removeUser():
+    if not current_user.is_admin:
+        return "Failed"
+
+    email = request.form['email']
+    User.query.filter_by(email=email).delete()
+    db.session.commit()
+    return json.dumps(request.form)
 
 # @lloyd.route('/pong')
 # @login_required
