@@ -63,6 +63,19 @@ h6 {
   color: #fff;
 }
 
+.modal-content {
+  color: #555;
+}
+
+.modal-content h1, 
+.modal-content h2, 
+.modal-content h3, 
+.modal-content h4, 
+.modal-content h5, 
+.modal-content h6 {
+  color: #333;
+}
+
 .img-centered {
   margin: 0 auto;
 }
@@ -873,4 +886,8 @@ tr.contactHeader {
 #menu-buttons > li:hover > div {
   background-color: gold;
   width: 100%;
+}
+
+input, textarea {
+  background-color: #333;
 }
