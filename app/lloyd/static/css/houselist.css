@@ -9,8 +9,16 @@
 
 #houselisttable th,
 #houselisttable td {
-    padding: 10px 15px;
+    padding: 9px 0px;
     border: 0px;
+}
+#houselisttable th:first-of-type,
+#houselisttable td:first-of-type {
+    padding-left: 9px;
+}
+#houselisttable th:last-of-type,
+#houselisttable td:last-of-type {
+    padding-right: 9px;
 }
 
 #houselisttable thead tr {
