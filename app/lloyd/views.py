@@ -10,13 +10,20 @@ import re
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 import unicodedata
-import secrets
 
-GOOGLE_CLIENT_ID = secrets.Google_ID
-GOOGLE_CLIENT_SECRET = secrets.Google_Client
-GOOGLE_DISCOVERY_URL = secrets.Google_URL
+OAuthEnabled = True
+try:
+    import secrets
 
-client = WebApplicationClient(GOOGLE_CLIENT_ID)
+    GOOGLE_CLIENT_ID = secrets.Google_ID
+    GOOGLE_CLIENT_SECRET = secrets.Google_Client
+    GOOGLE_DISCOVERY_URL = secrets.Google_URL
+
+    client = WebApplicationClient(GOOGLE_CLIENT_ID)
+except:
+    OAuthEnabled = False
+
+
 
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
@@ -53,6 +60,10 @@ def login():
 
 @lloyd.route('/Glogin', methods=['GET', 'POST'])
 def Glogin():
+    if not OAuthEnabled:
+        flash("Google Authentication not enabled. Contact Secretary for details")
+        return redirect(url_for('lloyd.login'))
+        
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
 
