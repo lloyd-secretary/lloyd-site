@@ -8,6 +8,7 @@
     <script src="{{ url_for('.static', filename='fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ url_for('.static', filename='fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ url_for('.static', filename='fullcalendar/gcal.js') }}"></script>
+    <link href="{{ url_for('.static', filename='css/calendar.css')}}" rel="stylesheet">
     <script type='text/javascript'>
 
         $(document).ready(function() {
@@ -43,7 +44,6 @@
 
     body {
         margin: 40px 10px;
-        padding: 40px;
         padding-top: 100px;
         font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     }
