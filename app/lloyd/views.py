@@ -287,7 +287,7 @@ def removeUser():
 #     users = User.query.all()
 #     return render_template("pong.html", users=users)
 
-@lloyd.route('/minutes')
+@lloyd.route('/resources')
 @login_required
-def minutes():
-    return render_template("minutes.html")
+def resources():
+    return render_template("resources.html")

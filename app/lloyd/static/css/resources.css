@@ -27,11 +27,18 @@
     font-size: 15px;
 }
 
+.resources-image {
+    border-radius: 10px;
+}
+
 .resources-image img {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    transition: 0.3s;
+}
+.resources-image:hover img {
+    scale: 1.2;
 }
 
 .resources-image {

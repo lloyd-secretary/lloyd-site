@@ -139,7 +139,7 @@ function removeMember() {
 		<thead class="thead-inverse">
 			<tr>
 				<td class="sort" data-sort="year">Year</button></td>
-				<td class="sort" data-sort="membership">Membership</button></td>
+				<td class="sort" data-sort="membership">Type</button></td>
 				<td class="sort" data-sort="fullname">Name</button></td>
 				<td class="sort" data-sort="room">Room</button></td>
 				<td class="sort" data-sort="major">Major</button></td>
@@ -147,7 +147,6 @@ function removeMember() {
 				<td class="sort" data-sort="phone">Phone</button></td>
 				<td class="sort" data-sort="birthday">Birthday</button></td>
 				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit</td> {% endif %}
-				{% if is_admin == True %} <td class="sort" data-sort="edit">Remove</td> {% endif %}
 			</tr>	
 		</thead>		
 		<tbody class="list">
@@ -164,9 +163,7 @@ function removeMember() {
 					{% if is_admin == True %} 
 					<td class="edit">
 						<a data-toggle="modal" data-target="#editModal" data-id="{{p.email}}" data-memb="{{p.membership}}" onclick="edit(this)"><span class="glyphicon glyphicon-pencil"></span></a>
-					</td> 
-					<td class="remove">
-						<a data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="remove(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
+						<a style="margin-left:5px" data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="remove(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
 					</td> 
 					{% endif %}
 				</tr i>
@@ -286,7 +283,7 @@ function removeMember() {
 
 {% endif %}
 
-<script src="http://listjs.com/assets/javascripts/list.min.js"></script>
+<script src="https://listjs.com/assets/javascripts/list.min.js"></script>
 <script type='text/javascript'> 
 	var options = {
 		valueNames: ['year', 'membership', 'firstname', 'nickname', 'lastname', 'room', 'major', 'email', 'phone', 'birthday']
