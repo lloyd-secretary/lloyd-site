@@ -28,3 +28,5 @@ sqlparse==0.1.19
 Tempita==0.5.2
 Werkzeug==0.15.3
 WTForms==2.1
+requests==2.21.0
+oauthlib==3.0.1
