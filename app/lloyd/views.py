@@ -177,4 +177,10 @@ def minutes():
 @login_required
 def lloydgpt():
     questions = QnA.query.all()
-    return render_template("lloydgpt.html", questions=questions)
+    is_admin = current_user.admin()
+    return render_template("lloydgpt.html", questions=questions, is_admin=is_admin)
+
+
+    # is_admin = current_user.admin()
+    # return render_template("houselist.html", people=people, is_admin=is_admin)
+
