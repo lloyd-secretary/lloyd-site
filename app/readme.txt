@@ -25,3 +25,32 @@ User.query.get(id)
 
 8) run "python run.py"
 9) Go to "localhost:5000" on your browser. Enjoy :)
+
+
+Google Authentication Instructions:
+
+To enable google authentication, register the application as a client to google on:
+1) https://console.developers.google.com/apis/credentials
+
+2) Select 'Create credentials' > 'OAuth Client ID'
+
+3) Select 'Web Application' and title the client 'Lloyd Website'
+
+4) Set 'Authorized JavaScript origins' to
+    https://127.0.0.1:5000
+    https://localhost:5000
+    https://lloyd.caltech.edu
+
+5) Set 'Authorized redirect URIs' to
+    https://127.0.0.1:5000/lloyd/Glogin/callback
+    https://localhost:5000/lloyd/Glogin/callback
+    https://lloyd.caltech.edu/lloyd/Glogin/callback
+
+6) Hit 'Create' and save the tokens in a file named secrets.py'.
+   The file should contain the following fields:
+        Google_ID = (enter token from website)
+        Google_Client = (enter token from website)
+        Google_URL = (enter token from website)
+
+7) DO NOT PUSH secrets.py to github or any public repository. Instead,
+   add secrets.py to .gitignore.
