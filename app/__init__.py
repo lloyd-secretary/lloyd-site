@@ -39,7 +39,7 @@ def route_root():
 # see README for setting up SSL
 @app.route('/.well-known/acme-challenge/<var>')
 def route_acme(var):
-    return send_from_directory("/var/www/app/lloyd/static/acme-challenge/",var)
+        return send_from_directory("/var/www/app/lloyd/static/acme-challenge/",var)
 
 from lloyd import views
 from rotation import views

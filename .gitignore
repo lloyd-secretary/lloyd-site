@@ -7,4 +7,3 @@ db_repository/
 node_modules
 .idea
 app/rotation/static/index_bundle.js
-secrets.py

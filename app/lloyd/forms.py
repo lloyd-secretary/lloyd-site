@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, Length, Regexp, Optional
 
 class LoginForm(Form):
 	username = StringField('username', validators=[DataRequired()], render_kw={"placeholder": "username"})
-	password = PasswordField('password', validators=[DataRequired()], render_kw={"placeholder": "password"})
+	password = PasswordField('password', validators=[DataRequired()])
 	remember_me = BooleanField('remember_me', default=False)
 
 class AccountUpdateForm(Form):
