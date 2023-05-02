@@ -118,6 +118,10 @@ def contact():
 def gallery():
     return render_template("gallery.html")
 
+@lloyd.route('/privacy')
+def privacy():
+    return render_template("privacy.html")
+
 @lloyd.route('/houselist')
 @login_required
 def houselist():
