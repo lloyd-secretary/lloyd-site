@@ -26,29 +26,6 @@ function edit(elm) {
         }
     })
 }
-
-function remove(elm) {
-	$.ajax({
-        url: '/lloyd/getUserDetails',
-		xhrFields: {
-			withCredentials: true
-		},
-        data: {
-            email: $(elm).attr('data-id')
-        },
-        type: 'POST',
-        success: function(res) {
-            data = JSON.parse(res);
-			if (data.email) {
-				$("#removeModalLabel").text($(elm).attr('data-id'));
-			}
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    })
-}
-
 function updateMembership() {
 	email = $("#editModalLabel").text()
 	membership = $("#editMembership").val()
@@ -67,71 +44,12 @@ function updateMembership() {
         }
     })
 }
-
-function addMember() {
-	year = $("#addYear").val()
-	membership = $("#addMembership").val()
-	firstname = $("#addFirstName").val()
-	lastname = $("#addLastName").val()
-	nickname = $("#addNickname").val()
-	address = $("#addRoom").val()
-	major = $("#addMajor").val()
-	email = $("#addEmail").val()
-	cellphone = $("#addCellPhone").val()
-	birthday = $("#addBirthday").val()
-	$.ajax({
-		url: '/lloyd/addUserDetails',
-		data: {
-			year: year,
-			membership: membership,
-			firstname: firstname,
-			nickname: nickname,
-			lastname: lastname,
-			address: address,
-			major: major,
-			email: email,
-			cellphone: cellphone,
-			birthday: birthday
-		},
-		type: 'POST',
-		success: function(res) {
-			location.reload();
-        },
-        error: function(error) {
-            console.log(error);
-        }
-	})
-}
-
-function removeMember() {
-	email = $("#removeModalLabel").text()
-	$.ajax({
-		url: '/lloyd/removeUser',
-		data: {
-			email: email
-		},
-		type: 'POST',
-		success: function(res) {
-			location.reload();
-        },
-        error: function(error) {
-            console.log(error);
-        }
-	})
-}
 </script>
 
 {% endif %}
 
 <div class="container table-responsive" id="houselist">
 	<h1>Lloyd Houselist <input class="search" placeholder="search" /> </h1>
-	{% if is_admin == True %}
-	<h4>
-		<a data-toggle="modal" data-target="#addModal">
-			<span class="glyphicon glyphicon-user" style="margin-right: 0.75rem;"></span>Add Member
-		</a>
-	</h4>
-	{% endif %}
 	  
 	<table align="center" class="table table-bordered table-hover">
 		<thead class="thead-inverse">
@@ -147,7 +65,6 @@ function removeMember() {
 				<td class="sort" data-sort="phone">Phone</button></td>
 				<td class="sort" data-sort="birthday">Birthday</button></td>
 				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit</td> {% endif %}
-				{% if is_admin == True %} <td class="sort" data-sort="edit">Remove</td> {% endif %}
 			</tr>	
 		</thead>		
 		<tbody class="list">
@@ -167,12 +84,9 @@ function removeMember() {
 					<td class="edit">
 						<a data-toggle="modal" data-target="#editModal" data-id="{{p.email}}" data-memb="{{p.membership}}" onclick="edit(this)"><span class="glyphicon glyphicon-pencil"></span></a>
 					</td> 
-					<td class="remove">
-						<a data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="remove(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
-					</td> 
 					{% endif %}
 				</tr i>
-			{% endfor %}
+			{% endfor %}	
 		</tbody>
 	</table>
 </div>
@@ -201,86 +115,6 @@ function removeMember() {
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" id="btnUpdate" class="btn btn-primary" onclick="updateMembership()">Update</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="removeModalLabel">Remove Member</h4>
-            </div>
-            <div class="modal-body">
-                Remove member?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="btnUpdate" class="btn btn-primary" onclick="removeMember()">Confirm</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="addModalLabel">Add Member</h4>
-            </div>
-            <div class="modal-body">
-                <form role="form" onsubmit="addMember()">
-                    <div class="form-group">
-                        <label for="recipient-name" class="control-label">Year:</label>
-						<select class="form-control" id="addYear">
-							<option value="RA">RA</option>
-							<option value="SS">Super Senior</option>
-							<option value="Sr">Senior</option>
-							<option value="Jr">Junior</option>
-							<option value="So">Sophomore</option>
-							<option value="Fr">Freshman</option>
-						</select>
-						<br>
-						<label for="recipient-name" class="control-label">House Membership:</label>
-						<select class="form-control" id="addMembership">
-							<option value="f">Full</option>
-							<option value="s">Social</option>
-						</select>
-						<br>
-						<label for="recipient-name" class="control-label">First Name: *</label>
-						<input class="form-control" id="addFirstName" onkeydown="/[a-z]/i.test(event.key)" required />
-						<br>
-						<label for="recipient-name" class="control-label">Last Name: *</label>
-						<input class="form-control" id="addLastName" onkeydown="/[a-z]/i.test(event.key)" required />
-						<br>
-						<label for="recipient-name" class="control-label">Nickname:</label>
-						<input class="form-control" id="addNickname" onkeydown="/[a-z]/i.test(event.key)"/>
-						<br>
-						<label for="recipient-name" class="control-label">Room:</label>
-						<input class="form-control" id="addRoom" onkeydown="/[a-z0-9]/i.test(event.key)"/>
-						<br>
-						<label for="recipient-name" class="control-label">Major:</label>
-						<input class="form-control" id="addMajor" onkeydown="/[a-z]/i.test(event.key)"/>
-						<br>
-						<label for="recipient-name" class="control-label">Email: *</label>
-						<input class="form-control" id="addEmail" onkeydown="/[a-z0-9@.]/i.test(event.key)" pattern="[A-Za-z0-9]+@caltech.edu" title="Caltech email required" required />
-						<br>
-						<label for="recipient-name" class="control-label">Cell Phone:</label>
-						<input class="form-control" id="addCellPhone" onkeypress="/[0-9]/i.test(event.key)"/>
-						<br>
-						<label for="recipient-name" class="control-label">Birthday: *</label>
-						<input type="date" class="form-control" id="addBirthday" value=null required />
-                    </div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" id="btnAdd" class="btn btn-primary">Add</button>
-					</div>
-                </form>
             </div>
         </div>
     </div>
