@@ -24,7 +24,7 @@ pytz==2016.6.1
 six==1.10.0
 SQLAlchemy==1.0.14
 sqlalchemy-migrate==0.10.0
-sqlparse==0.1.19
+sqlparse==0.4.4
 Tempita==0.5.2
 Werkzeug==0.15.3
 WTForms==2.1
