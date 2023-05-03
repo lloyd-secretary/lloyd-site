@@ -10,9 +10,20 @@ default_photo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/J
 class User(db.Model, UserMixin):
     __tablename__ = 'houselist'
 
-    def __init__(self, username, password):
+    def __init__(self, username, password=None, year=None, membership=None, firstname=None, lastname=None, nickname=None, address=None, major=None, email=None, cellphone=None, birthday=None):
         self.username = username
-        self.password = bcrypt.generate_password_hash(password)
+        if password is not None:
+            self.password = bcrypt.generate_password_hash(password)
+        self.year = year
+        self.membership = membership
+        self.firstname = firstname
+        self.lastname = lastname
+        self.nickname = nickname
+        self.address = address
+        self.major = major 
+        self.email = email
+        self.cellphone = cellphone
+        self.birthday = birthday
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -102,15 +113,7 @@ class Feedback(db.Model):
             'timestamp': None,
         }
 
-
-class QnA(db.Model):
-    __tablename__ = 'qna'
-
-    def __init__(self, question, answer):
-        self.question = question
-        self.answer = answer
-
-
 #class Dinner(db.Model):
 #    __tablename__ = 'dinners'
 #    __bind_key__ = 'rotation'
+

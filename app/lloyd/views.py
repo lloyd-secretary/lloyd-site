@@ -2,7 +2,8 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_required, current_user, login_user, logout_user
 from . import lloyd
 from .. import db, login_manager
-from ..models import User, QnA
+from ..models import User
+# , QnA
 from .forms import *
 import json
 import datetime
@@ -162,6 +163,8 @@ def updateUserDetails():
         db.session.commit()
         return json.dumps(request.form)
 
+
+
 # @lloyd.route('/pong')
 # @login_required
 # def pong():
@@ -176,11 +179,35 @@ def minutes():
 @lloyd.route('/lloydgpt', methods=['GET', 'POST'])
 @login_required
 def lloydgpt():
-    questions = QnA.query.all()
+    questions = User.query.all()
     is_admin = current_user.admin()
     return render_template("lloydgpt.html", questions=questions, is_admin=is_admin)
 
 
+
+
+
+
+@login_required
+def addUserDetails():
+   if not current_user.is_admin:
+       return "Failed"
+  
+   username = re.sub("[^A-Za-z]", "", (request.form['firstname']+request.form['lastname']).lower())
+   firstname = request.form['firstname'].title()
+   lastname = request.form['lastname'].title()
+   email = request.form['email'].lower()
+   birthday = request.form['birthday']
+   if birthday == "":
+       birthday = u'0000-00-00'
+      
+   user = User(username=username, year=request.form['year'], membership=request.form['membership'], firstname=firstname, lastname=lastname, nickname=request.form['nickname'], address=request.form['address'], major=request.form['major'], email=email, cellphone=request.form['cellphone'], birthday=birthday)
+   db.session.add(user)
+   db.session.commit()
+   return json.dumps(request.form)
+
+
     # is_admin = current_user.admin()
     # return render_template("houselist.html", people=people, is_admin=is_admin)
+
 
