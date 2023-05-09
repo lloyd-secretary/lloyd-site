@@ -1,36 +1,61 @@
 {%extends "base.html" %}
 {% block content %}
 
-<h1 style="text-align: center; color: black; font-family: 'Verdana'; font-size: 30px;">
-  Please Login
-</h1>
-
 <head>
   <style>
     .container2 {
-      width: 500px;
+      width: 400px;
       height: auto;
       margin: 25px auto;
-      background: rgb(246, 232, 145);
-      border-radius: 10px;
-      padding-bottom: 20px;
       position: relative;
     }
 
     input {
-      width: 420px;
-      height: 40px;
-      margin: 20px 40px 5px 40px;
+      width: 100%;
+      margin-top: 10px;
       padding: 15px;
       border: none;
       border-radius: 5px;
-      font-size: 18px;
+    }
+
+    #login-title {
+      text-align: center; 
+      margin-top: 45px;
+    }
+
+    #login-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      background-image: linear-gradient(to right, #FCD367, #CCA340);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #glogin-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: 3px solid #FCD367;
+      border-radius: 5px;
+      background: none;
+      font-weight: bold;
+      color: #FCD367;
+      cursor: pointer;
     }
 
   </style>
 </head>
 <body>
+  
   <div class="container2">
+    
+<h2 id="login-title">
+  Login
+</h2>
+<p>You can login with your username (firstlast) and password, or with your Caltech email. </p>
     <div class="form-group">
       <form action="" method="post", name="login">
         {{ form.hidden_tag() }}
@@ -48,28 +73,10 @@
           {% endif %}
         {% endwith %}
 
-        <input type="submit" value="Login" class="btn btn-default" style="
-          width: 320px;
-          height: 50px;
-          margin: 10px 90px;
-          padding: 10px;
-          border: none;
-          border-radius: 5px;
-          background: rgb(34, 34, 34);
-          color: #F1F3F7;
-          cursor: pointer;">
+        <input type="submit" value="Login" class="btn btn-default" id="login-button">
         <br>
         <br>
-        <input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" style="
-          width: 320px;
-          height: 50px;
-          margin: 10px 90px;
-          padding: 10px;
-          border: none;
-          border-radius: 5px;
-          background: #4d4dec;
-          color: #f9f9f9;
-          cursor: pointer;">
+        <input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" id="glogin-button">
       </form>
     </div>
   </div>

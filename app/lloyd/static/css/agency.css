@@ -26,12 +26,10 @@ body {
 }
 
 p {
-  text-indent: 100px;
   font-size: 18px;
   line-height: 1.75;
 }
 p.large {
-  text-indent: 50px;
   font-size: 16px;
 }
 a,
