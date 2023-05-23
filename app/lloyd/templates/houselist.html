@@ -135,7 +135,7 @@ function removeMember() {
 	</h4>
 	{% endif %}
 	  
-	<table align="center" class="table table-bordered table-hover" id="houselisttable">
+	<table align="center" class="table table-hover styled-table">
 		<thead class="thead-inverse">
 			<tr>
 				<td class="sort" data-sort="year">Year</button></td>
@@ -146,7 +146,7 @@ function removeMember() {
 				<td class="sort" data-sort="email">Email</button></td>
 				<td class="sort" data-sort="phone">Phone</button></td>
 				<td class="sort" data-sort="birthday">Birthday</button></td>
-				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit</td> {% endif %}
+				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit/Del</td> {% endif %}
 			</tr>	
 		</thead>		
 		<tbody class="list">
@@ -154,7 +154,7 @@ function removeMember() {
 				<tr id="row_{{p.email[0:p.email.index('@')]}}">
 					<td class="year"> {{p.year}} </td>
 					<td class="membership"> {% if p.membership == 'f' %} Full {% else %} Social {% endif %} </td>
-					<td class="fullname"> {% if p.nickname == '' %} {{p.firstname + " " + p.lastname}} {% else %} {{p.firstname + " \"" + p.nickname + "\" " + p.lastname}} {% endif %} </td>
+					<td class="fullname"> {% if p.nickname == '' or p.nickname == ' ' %} {{p.firstname + " " + p.lastname}} {% else %} {{p.firstname + " \"" + p.nickname + "\" " + p.lastname}} {% endif %} </td>
 					<td class="room"> {{p.address}} </td>
 					<td class="major"> {{p.major}} </td>
 					<td class="email"> <a href="mailto:{{p.email}}"> {{p.email}}</a> </td>

@@ -803,11 +803,11 @@ ul.social-buttons li a:active {
 }
 ::-moz-selection {
   text-shadow: none;
-  background: #FCD367;
+  background: #8C7337;
 }
 ::selection {
   text-shadow: none;
-  background: #FCD367;
+  background: #8C7337;
 }
 img::selection {
   background: transparent;
@@ -817,7 +817,7 @@ img::-moz-selection {
 }
 html, body {
   height: 100%;
-  webkit-tap-highlight-color: #FCD367;
+  webkit-tap-highlight-color: #8C7337;
 }
 .container-calendar {
   padding-top: 50px;
@@ -895,4 +895,67 @@ tr.contactHeader {
 
 input, textarea {
   background-color: #333;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  border: 0px;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 9px 0px;
+  border: 0px;
+}
+.styled-table th:first-of-type,
+.styled-table td:first-of-type {
+  padding-left: 9px;
+}
+.styled-table th:last-of-type,
+.styled-table td:last-of-type {
+  padding-right: 9px;
+}
+
+.styled-table thead tr {
+  border: 0px;
+  background-color: #FCD367;
+  color: #1C1B19;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 20px;
+}
+
+.styled-table thead td:first-child {
+  border-top-left-radius: 10px;
+}
+.styled-table thead td:last-child {
+  border-top-right-radius: 10px;
+}
+
+.styled-table tbody tr {
+  border: 0px;
+  border-bottom: 1px solid #1C1B19;
+}
+.styled-table tbody tr td{
+  border: 0px;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #333;
+}
+.styled-table tbody tr:nth-of-type(odd) {
+  background-color: #222;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #FCD367;
+}
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  background-color: #333;
+  color: #FCD367;
 }
