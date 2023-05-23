@@ -45,37 +45,50 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" id="menu-buttons">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li>
                         <a href="{{ url_for('lloyd.calendar') }}">Calendar</a>
+                        <div class="underscore"></div>
                     </li>
                     <li>
                         <a href="{{ url_for('lloyd.gallery') }}">Gallery</a>
+                        <div class="underscore"></div>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li>
                         <a href="{{ url_for('lloyd.houselist') }}">Houselist</a>
+                        <div class="underscore"></div>
                     </li>
+                    {% endif %}
+                    
                     <li>
                         <a href="{{ url_for('lloyd.bylaws') }}">Bylaws</a>
+                        <div class="underscore"></div>
                     </li>
                     <li>
                         <a href="{{ url_for('lloyd.contact') }}">Contact</a>
-		    </li>
-		    <li>
-			<a href="{{ url_for('lloyd.minutes') }}">Resources</a>
-		    </li>
-		    <li>
-			<a href="{{ url_for('lloyd.account') }}">Account</a>
-	            </li>
+                        <div class="underscore"></div>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li>
+                        <a href="{{ url_for('lloyd.resources') }}">Resources</a>
+                        <div class="underscore"></div>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('lloyd.account') }}">Account</a>
+                        <div class="underscore"></div>
+                    </li>
+                    {% endif %}
                     <li>
                         {% if g.user.is_authenticated %}
                         <a style="color: red;" href="{{ url_for('lloyd.logout') }}">Logout</a>
                         {% else %}
                         <a style="color: gold;" href="{{ url_for('lloyd.login') }}">Login</a>
                         {% endif %}
+                        <div class="underscore"></div>
                     </li>
                 </ul>
             </div>
@@ -90,7 +103,7 @@
     
     <footer>
         <div class="container">
-            <span class="copyright">Copyright &copy; Anish Thilagar 2016, Andres Gutierrez 2020, Kevin Gauld 2022</span>
+            <span class="copyright">Copyright &copy; 2016 Lloyd House</span>
         </div>
     </footer>
 

@@ -6,6 +6,28 @@ from ..models import User
 from .forms import *
 import json
 import datetime
+import re
+# from oauthlib.oauth2 import WebApplicationClient
+# import requests
+import unicodedata
+
+OAuthEnabled = True
+try:
+    import secrets
+
+    GOOGLE_CLIENT_ID = secrets.Google_ID
+    GOOGLE_CLIENT_SECRET = secrets.Google_Client
+    GOOGLE_DISCOVERY_URL = secrets.Google_URL
+
+    client = WebApplicationClient(GOOGLE_CLIENT_ID)
+except:
+    OAuthEnabled = False
+
+
+
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
 
 @lloyd.route('/')
 @lloyd.route('/index')
@@ -168,7 +190,7 @@ def updateUserDetails():
 #     users = User.query.all()
 #     return render_template("pong.html", users=users)
 
-@lloyd.route('/minutes')
+@lloyd.route('/resources')
 @login_required
-def minutes():
-    return render_template("minutes.html")
+def resources():
+    return render_template("resources.html")

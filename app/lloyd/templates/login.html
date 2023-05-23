@@ -1,37 +1,83 @@
 {%extends "base.html" %}
 {% block content %}
 
-	<div class="container">
-      <h1>Please Login</h1>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul>
-          {% for message in messages %}
-              <li style="color: red;">{{ message }} </li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
-      <br>
-      <div class="col-sm-2">
-        <div class="form-group">
-          <form action="" method="post" name="login">
-            {{ form.hidden_tag() }}
-            <div>{{ form.username(size=20, class="form-control") }}</div>
-            </br>
-            <div>{{ form.password(size=20, class="form-control") }}</div>
-            <div class="checkbox">
-              <label>
-                {{ form.remember_me }} Remember Me
-              </label>
-            </div>
-            <input class="btn btn-default" type="submit" value="Login">
-          </form>
-        </div>
-      </div>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-      {% endif %}
+<head>
+  <style>
+    .container2 {
+      width: 400px;
+      height: auto;
+      margin: 25px auto;
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #login-title {
+      text-align: center; 
+      margin-top: 45px;
+    }
+
+    #login-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      background-image: linear-gradient(to right, #FCD367, #CCA340);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #glogin-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: 3px solid #FCD367;
+      border-radius: 5px;
+      background: none;
+      font-weight: bold;
+      color: #FCD367;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="container2">
+    
+<h2 id="login-title">
+  Login
+</h2>
+<p>You can login with your username (firstlast) and password, or with your Caltech email. </p>
+    <div class="form-group">
+      <form action="" method="post", name="login">
+        {{ form.hidden_tag() }}
+        
+        <div>{{ form.username(size=10) }}</div>
+        <div>{{ form.password(size=10) }}</div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+                <h6 style="margin-top: 10px; text-transform: lowercase; text-align: center; color: red; font-size: 15px;">
+                  {{ message }} 
+                </h6>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <input type="submit" value="Login" class="btn btn-default" id="login-button">
+        <br>
+        <br>
+        <input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" id="glogin-button">
+      </form>
     </div>
 	
 
