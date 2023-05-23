@@ -1,0 +1,7 @@
+
+p {
+    text-indent: 100px;
+  }
+  p.large {
+    text-indent: 50px;
+  }

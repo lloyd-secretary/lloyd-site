@@ -1,0 +1,13 @@
+.fc-view-container {
+    font-family: 'Montserrat';
+    font-size: 17px;
+}
+
+.fc-day-grid-event {
+    padding: 5px;
+}
+
+.fc-event,
+.fc-title {
+    white-space: normal;
+}

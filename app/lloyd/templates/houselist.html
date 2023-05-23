@@ -123,6 +123,8 @@ function removeMember() {
 
 {% endif %}
 
+<link href="{{ url_for('.static', filename='css/houselist.css')}}" rel="stylesheet">
+
 <div class="container table-responsive" id="houselist">
 	<h1>Lloyd Houselist <input class="search" placeholder="search" /> </h1>
 	{% if is_admin == True %}
@@ -133,21 +135,18 @@ function removeMember() {
 	</h4>
 	{% endif %}
 	  
-	<table align="center" class="table table-bordered table-hover">
+	<table align="center" class="table table-hover styled-table">
 		<thead class="thead-inverse">
 			<tr>
 				<td class="sort" data-sort="year">Year</button></td>
-				<td class="sort" data-sort="membership">Membership</button></td>
-				<td class="sort" data-sort="firstname"> First Name</button></td>
-				<td class="sort" data-sort="nickname">Nickname</button></td>
-				<td class="sort" data-sort="lastname"> Last Name</button></td>
+				<td class="sort" data-sort="membership">Type</button></td>
+				<td class="sort" data-sort="fullname">Name</button></td>
 				<td class="sort" data-sort="room">Room</button></td>
 				<td class="sort" data-sort="major">Major</button></td>
 				<td class="sort" data-sort="email">Email</button></td>
 				<td class="sort" data-sort="phone">Phone</button></td>
 				<td class="sort" data-sort="birthday">Birthday</button></td>
-				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit</td> {% endif %}
-				{% if is_admin == True %} <td class="sort" data-sort="edit">Remove</td> {% endif %}
+				{% if is_admin == True %} <td class="sort" data-sort="edit">Edit/Del</td> {% endif %}
 			</tr>	
 		</thead>		
 		<tbody class="list">
@@ -155,9 +154,7 @@ function removeMember() {
 				<tr id="row_{{p.email[0:p.email.index('@')]}}">
 					<td class="year"> {{p.year}} </td>
 					<td class="membership"> {% if p.membership == 'f' %} Full {% else %} Social {% endif %} </td>
-					<td class="firstname"> {{p.firstname}} </td>
-					<td class="nickname"> {{p.nickname}} </td>
-					<td class="lastname"> {{p.lastname}} </td>
+					<td class="fullname"> {% if p.nickname == '' or p.nickname == ' ' %} {{p.firstname + " " + p.lastname}} {% else %} {{p.firstname + " \"" + p.nickname + "\" " + p.lastname}} {% endif %} </td>
 					<td class="room"> {{p.address}} </td>
 					<td class="major"> {{p.major}} </td>
 					<td class="email"> <a href="mailto:{{p.email}}"> {{p.email}}</a> </td>
@@ -166,9 +163,7 @@ function removeMember() {
 					{% if is_admin == True %} 
 					<td class="edit">
 						<a data-toggle="modal" data-target="#editModal" data-id="{{p.email}}" data-memb="{{p.membership}}" onclick="edit(this)"><span class="glyphicon glyphicon-pencil"></span></a>
-					</td> 
-					<td class="remove">
-						<a data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="remove(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
+						<a style="margin-left:5px" data-toggle="modal" data-target="#removeModal" data-id="{{p.email}}" onclick="remove(this)"><span class="glyphicon glyphicon-minus-sign"></span></a>
 					</td> 
 					{% endif %}
 				</tr i>
@@ -288,7 +283,7 @@ function removeMember() {
 
 {% endif %}
 
-<script src="http://listjs.com/assets/javascripts/list.min.js"></script>
+<script src="https://listjs.com/assets/javascripts/list.min.js"></script>
 <script type='text/javascript'> 
 	var options = {
 		valueNames: ['year', 'membership', 'firstname', 'nickname', 'lastname', 'room', 'major', 'email', 'phone', 'birthday']
