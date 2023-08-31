@@ -19,7 +19,7 @@
                 // http://fullcalendar.io/docs/google_calendar/
                  googleCalendarApiKey: 'AIzaSyA0GLgOv7q7F_k3kvLBIEtH9NQX7vOPtMg', //socd calendar
                 // googleCalendarApiKey: 'AIzaSyA0FfmKEBMRmXh_Fuqn9-rA5putIv3Oj1w', //irene's calendar
-            
+                display: 'list-item',
                 // US Holidays
                 //events: 'en.usa#holiday@group.v.calendar.google.com',
                 // substitute with lloyd's own public calendar
@@ -30,6 +30,8 @@
                     window.open(event.url, 'gcalevent', 'width=700,height=600');
                     return false;
                 },
+
+                initialView: 'listWeek',
                 
                 loading: function(bool) {
                     $('#loading').toggle(bool);
@@ -41,17 +43,6 @@
 
     </script>
     <style>
-
-    body {
-        margin: 40px 10px;
-        padding-top: 100px;
-        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-    }
-    #calendar {
-        font-size: 14px;
-        max-width: 100%;
-        margin: 0 auto;
-    }
 
 </style>
 

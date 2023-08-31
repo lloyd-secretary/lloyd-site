@@ -4,7 +4,13 @@
 }
 
 #map-section {
-    padding-top: 100px;
+    padding-top: 50px;
+}
+
+@media (min-width: 768px) {
+    #map-section {
+        padding-top: 100px;
+    }
 }
 
 #events-section-title {
@@ -19,13 +25,13 @@
 #lloyd-map-left.active img {
     transform: scale(2.6);
     /* transform-origin: 87% 75%; */
-    transform-origin: 95% 50%;
+    transform-origin: 100% 50%;
 }
 #lloyd-map-left > img {
   width: 100%;
   height: 500px;
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 80% 50%;
   transition: transform 1s ease;
   transition-delay: 0.3s;
 }

@@ -10,6 +10,7 @@ import re
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 import unicodedata
+import os
 
 OAuthEnabled = True
 try:
@@ -202,7 +203,12 @@ def contact():
 
 @lloyd.route('/gallery')
 def gallery():
-    return render_template("gallery.html")
+    relfolder = 'static/img/album/'
+    dirname = os.path.dirname(__file__)
+    folder = os.path.join(dirname, relfolder)
+    hists = os.listdir(folder)
+    hists = ['img/album/' + file for file in hists]
+    return render_template("gallery.html", hists = hists)
 
 @lloyd.route('/houselist')
 @login_required
