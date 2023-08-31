@@ -1,20 +1,16 @@
 {%extends "base.html" %}
 {% block content %}
 
+	<link href="{{ url_for('.static', filename='css/gallery.css')}}" rel="stylesheet">
+
 	<div id="bylawtitle" style="margin-bottom:20px">Photo Gallery</div>
-	<!-- Use this site https://www.publicalbum.org/blog/embedding-google-photos-albums -->
-	<script src="https://cdn.jsdelivr.net/npm/publicalbum@latest/embed-ui.min.js" async></script>
-	<div class="pa-carousel-widget" style="width:80%; height:600px; margin:auto; display:none;"
-		data-link="https://photos.app.goo.gl/i77C8PbyGBcaxHRh9"
-		data-title="Lloyd 2022-23"
-		data-description="5 new items added to shared album">
-		<object data="https://lh3.googleusercontent.com/BZDnV2apS-LDE2yKvJkPlR68BO4vSf48sxt617xYo3M09q7YZTd6a8nSNIHM3oET4ihdu3_oSGrY2Ulu22atAE4ZbCK9BeVU1a8Gcts671zitgV6odtk_A3sc3n8IKeVZJt24myE=w1920-h1080"></object>
-		<object data="https://lh3.googleusercontent.com/1-u20O1mnzAOmQjXmKIiDH-4Xh6ipmy0mPv-so3kQ8IeHVNProYNNpL0qCEvyCTjzZss25p_e5B4tmw64J6QClT_r7k0kBey-GfQxYSxPB0wLu7NLY-KG6e9WsUzJ38zpcg-EJqI=w1920-h1080"></object>
-		<object data="https://lh3.googleusercontent.com/C2YKFJaWZlpZOEUogSHM4ZR4SYyi-AJf6ViQn9hPgZd9K2dv4BLfc6edmfYAe73nFs4YyfM2pgAYl2BMF9rqYfSQv5SgaE4fSPHJTfCIo5ClpSHAMdFiH1hkB-6TgT6ogITnCUQy=w1920-h1080"></object>
-		<object data="https://lh3.googleusercontent.com/ETtjbLmoSD7MiKl8ZO0CqIotQRYh-Vmkte2k0EyFxGxeWhWu2DoAKwguqJDiwRVxbqfH9O4oTE1LTPWuaI-V9YBvXuUQRY8PQ-gnt6_vQaAKqWgT9XCu80crCRI2tE9Beh0XDlfs=w1920-h1080"></object>
-		<object data="https://lh3.googleusercontent.com/29qpRlnOKfeTTp6ctpZzwz1Ssq0yUXb-UN-0IxL-OD6ulohEzWkztuMkz_zWYRu3zioL7AB76OtGbjSWXzUsspyOH3tPqmstK1J3JF9mVst0rBsF3ZKqGO1OjPMih32FZa-L8ENP=w1920-h1080"></object>
-		<object data="https://lh3.googleusercontent.com/ygzKID-kL3UJSTfNcYl40xLy8z0GFUulpG2XpigOQJu8G7zc3Ta8iCcdE25i7YB1lozgp8YJCRg_ORgSDHIH9lsqXrBa74CdIah_33CGwZIFZcSMzGEuPtdabzn25JL4xtzrg_MoFQ=w1920-h1080"></object>
-	</div>
+	<ul id="galleryContainer">
+		{% for url in hists %}
+		<li>
+			<img src="{{url_for('.static', filename=url)}}"  loading="lazy">
+		</li>
+		{% endfor %}
+	</ul>
 
 
 	<div id="bylawtitle" style="margin-bottom:20px">House Instagram</div>

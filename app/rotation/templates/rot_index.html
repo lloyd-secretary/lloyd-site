@@ -24,7 +24,7 @@
     </div>
 
     <div id="prefroshImages">
-        {% for p in prefrosh[:40] %}
+        {% for p in prefrosh %}
         <div class="imageContainer">
             <a  href="{{ url_for('rotation.rotation_frosh', frosh_id=p.id) }}">
                 <img 

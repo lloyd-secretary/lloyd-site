@@ -1,13 +1,38 @@
+
+#calendar {
+    font-size: 10px;
+    width: 768px;
+    margin: 0 auto;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+
+
 .fc-view-container {
     font-family: 'Montserrat';
-    font-size: 17px;
+    font-size: 12px;
 }
 
 .fc-day-grid-event {
-    padding: 5px;
+    padding: 2px;
 }
 
 .fc-event,
 .fc-title {
     white-space: normal;
+}
+
+@media (min-width: 868px) {
+    #calendar {
+        font-size: 14px;
+        padding: 50px;
+        width: 100%;
+    }
+
+    .fc-view-container {
+        font-size: 17px;
+    }
+
+    .fc-day-grid-event {
+        padding: 5px;
+    }
 }
