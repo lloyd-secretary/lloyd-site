@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_required, current_user, login_user, logout_user
 from . import lloyd
 from .. import db, login_manager
-from ..models import User
+from ..models import User, FroshDinners, Prefrosh, Dinner
 from .forms import *
 import json
 import datetime
@@ -10,6 +10,7 @@ import re
 from oauthlib.oauth2 import WebApplicationClient
 import requests
 import unicodedata
+import os
 
 OAuthEnabled = True
 try:
@@ -70,6 +71,7 @@ def account():
 
 
     email_form = SubscriptionsForm(request.form, prefix='email_form')
+
     # presset nomail field
     email_form.nomail.default = current_user.get_nomail()
     email_form.nomail.process(request.form)
@@ -79,6 +81,7 @@ def account():
     email_form.mailinglists.default = [k for k in preselect.keys() if preselect[k] == True]
     email_form.mailinglists.process(request.form)
 
+    rotation_form = RotationForm(request.form, prefix="rotation_form", rotation=current_user.get_rotation())
 
     account_form = AccountUpdateForm(request.form, prefix='account_form', obj=current_user)
 
@@ -104,12 +107,75 @@ def account():
         db.session.commit()
         flash('personal info successfully updated', 'account')
 
+    elif rotation_form.submit.data and rotation_form.validate_on_submit():
+        current_user.rotation = rotation_form.rotation.data
+        db.session.commit()
+        flash('rotation status info successfully updated', 'rotation')
+
 
     return render_template("account.html",
                             password_form=password_form,
                             email_form=email_form,
                             account_form=account_form,
+                            rotation_form=rotation_form,
                             user=current_user)
+
+
+@lloyd.route('/checkin', methods=['GET', 'POST'])
+@login_required
+def checkin():
+    checkin_form = CheckinForm(request.form, prefix='checkin_form')
+
+    if checkin_form.submit.data and checkin_form.validate_on_submit():
+        print ("here")
+        print (dir(datetime.datetime))
+        # get the most recent dinner
+        prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
+
+        # get the frosh that matches based on email
+        froshName = checkin_form.name.data
+        if len(froshName.split(" ")) == 1:
+            flash("Please provide your full name.")
+            return render_template("checkin.html",
+                            checkin_form=checkin_form)
+
+        froshFound = Prefrosh.query.filter(Prefrosh.firstname + " " + Prefrosh.lastname == checkin_form.name.data).first()
+
+        if froshFound == None:
+            candidates = []
+            firstName = froshName.split(" ")[0].lower()
+            lastName = froshName.split(" ")[-1].lower()
+            
+            for frosh in Prefrosh.query.filter(Prefrosh.firstname.ilike(firstName)).all():
+                candidates.append(frosh.firstname + " " + frosh.lastname)
+            for frosh in Prefrosh.query.filter(Prefrosh.lastname.ilike(lastName)).all():
+                candidates.append(frosh.firstname + " " + frosh.lastname)
+
+            print (candidates)
+
+            if len(candidates) == 0:
+                flash("Hmm.... we couldn't find a prefrosh with that first or last name")
+                return render_template("checkin.html",
+                            checkin_form=checkin_form)
+            else:
+                flash("Hmm.... we couldn't find a prefrosh with that name. Here are the people we have with the same first or last names: " + ", ".join(candidates))
+                flash("Try using the exact name we have on record... it might be legal name...")
+                return render_template("checkin.html",
+                            checkin_form=checkin_form)
+
+        frosh = FroshDinners(frosh_id=froshFound.id, dinner_id=prevDinners.id)
+        try:
+            db.session.add(frosh)
+            db.session.commit()
+            flash('You\'ve checked in!', 'checkin')
+        except:
+            db.session.rollback()
+            flash('You\'ve already checked in!', 'error')
+
+    return render_template("checkin.html",
+                            checkin_form=checkin_form)
+
+
 
 # @lloyd.route('/setpasswords', methods=['GET', 'POST'])
 # def setpasswords():
@@ -137,7 +203,12 @@ def contact():
 
 @lloyd.route('/gallery')
 def gallery():
-    return render_template("gallery.html")
+    relfolder = 'static/img/album/'
+    dirname = os.path.dirname(__file__)
+    folder = os.path.join(dirname, relfolder)
+    hists = os.listdir(folder)
+    hists = ['img/album/' + file for file in hists]
+    return render_template("gallery.html", hists = hists)
 
 @lloyd.route('/houselist')
 @login_required

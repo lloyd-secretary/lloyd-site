@@ -1,0 +1,41 @@
+{%extends "rot_base.html" %}
+{% block content %}
+
+<link href="{{ url_for('.static', filename='css/rot_index.css')}}" rel="stylesheet">
+
+<div class="container">
+    <h2>hello! {% if dinner != '' %} welcome to dinner: {{dinner}} {% endif %}</h2>
+    <p>click on a student to see comments</p>
+    <div id="navHolder">
+        {% if left != '' %} <a href="{{left}}">
+            <div class="customIcon" id="leftIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            </div>
+        </a> {% endif %}
+        {% if right != '' %}<a href="{{right}}">
+            <div class="customIcon" id="rightIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+                </div>
+        </a> {% endif %}
+    </div>
+
+    <div id="prefroshImages">
+        {% for p in prefrosh %}
+        <div class="imageContainer">
+            <a  href="{{ url_for('rotation.rotation_frosh', frosh_id=p.id) }}">
+                <img 
+                    src="{{ url_for('.static', filename=p.photo_url[:14]+'small_'+p.photo_url[14:])}}" 
+                    onError="{{'this.onerror=null;this.src=\''+url_for('.static', filename='img/placeholder.png')+'\''}}"
+                    class="img-thumbnail"
+                >
+                <label>{{p.firstname + ' ' + p.lastname}}</label>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

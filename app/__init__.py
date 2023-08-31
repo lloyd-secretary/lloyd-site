@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy.ext.automap import automap_base
 
 # Set this to True for production!
-production = True
+production = False
 
 app = Flask(__name__)
 app.config.from_object('config')
