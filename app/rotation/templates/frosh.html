@@ -1,0 +1,58 @@
+{%extends "rot_base.html" %}
+{% block content %}
+
+<link href="{{ url_for('.static', filename='css/frosh.css')}}" rel="stylesheet">
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ url_for('.static', filename=prefrosh.photo_url)}}" class="img-thumbnail froshImage">
+        </div>
+        <div class="col-md-6">
+            <h1>{{prefrosh.firstname}}</h1>
+            <table class="table">
+                <thead>
+                    <td>Comment</td>
+                    <td>Time</td>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>{{comment.comment}}</td>
+                        <td>{{comment.timestamp}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            
+            </table>
+            <div class="form-group">
+                <form action="" method="post", name="login">
+                  {{ form.hidden_tag() }}
+
+                  <p>After each dinner, add comments on who you talked to!</p>
+                  <ul>
+                    <li>Feel free to add any impression no matter how big or small.</li>
+                    <li>What did they want to talk about?</li>
+                    <li>It helps to get a sense for their vibe. Maybe compare them to people we know.</li>
+                  </ul>
+                  
+                  <div >{{ form.comment(class="form-control") }}</div >
+          
+                  {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                      {% for message in messages %}
+                          <h6 style="margin-top: 10px; text-transform: lowercase; text-align: center; color: red; font-size: 15px;">
+                            {{ message }} 
+                          </h6>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+          
+                  <input type="submit" value="Comment" class="btn btn-default" id="login-button">
+                </form>
+              
+        </div>
+    </div>
+  </div>
+{% endblock %}

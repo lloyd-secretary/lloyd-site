@@ -29,6 +29,9 @@ class User(db.Model, UserMixin):
     def set_nomail(self, nomail):
         self.nomail = nomail
 
+    def get_rotation(self):
+        return self.rotation
+
     def set_full(self, membership):
         self.membership = membership
 
@@ -74,11 +77,7 @@ class Prefrosh(db.Model):
             'id': self.id,
             'displayName': self.getFullName(),
             'preferredName': self.getFullName(),
-            'photo_url': photo_url,
-            'rotationHouse': 'prefrosh land',
-            'dinner_id': (self.dinner_id+1),
-            'dessert_id': 0,
-            'comeback': 0,
+            'photo_url': photo_url
         }
 
 class Feedback(db.Model):
@@ -88,10 +87,11 @@ class Feedback(db.Model):
     def __repr__(self):
         return '<Feedback %r>' % (str(self.user_id) + " for " + str(self.frosh_id))
 
-    def __init__(self, user_id, pf, comment):
+    def __init__(self, user_id, pf, comment, timestamp):
         self.user_id = user_id
         self.frosh_id = pf
         self.comment = comment
+        self.timestamp = timestamp
 
     def serialize(self):
         return {
@@ -99,9 +99,19 @@ class Feedback(db.Model):
             'user': load_user(self.user_id).username,
             'prefrosh': self.frosh_id,
             'content': self.comment,
-            'timestamp': None,
+            'timestamp': self.timestamp,
         }
 
-#class Dinner(db.Model):
-#    __tablename__ = 'dinners'
-#    __bind_key__ = 'rotation'
+class Dinner(db.Model):
+    __tablename__ = 'dinners'
+    __bind_key__ = 'rotation'
+
+
+class FroshDinners(db.Model):
+    __tablename__ = 'froshdinners'
+    __bind_key__ = 'rotation'
+   
+    def __init__(self, frosh_id, dinner_id):
+        self.frosh_id = frosh_id
+        self.dinner_id = dinner_id
+

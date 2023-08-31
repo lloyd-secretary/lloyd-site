@@ -49,6 +49,12 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                    {% if current_user.rotation == 1 %}
+                    <li>
+                        <a href="{{ url_for('rotation.rotation_index') }}">Rotation</a>
+                        <div class="underscore"></div>
+                    </li>
+                    {% endif %}
                     <li>
                         <a href="{{ url_for('lloyd.calendar') }}">Calendar</a>
                         <div class="underscore"></div>
@@ -68,10 +74,12 @@
                         <a href="{{ url_for('lloyd.bylaws') }}">Bylaws</a>
                         <div class="underscore"></div>
                     </li>
+                    {% if current_user.rotation == 0 %}
                     <li>
                         <a href="{{ url_for('lloyd.contact') }}">Contact</a>
                         <div class="underscore"></div>
                     </li>
+                    {% endif %}
                     {% if current_user.is_authenticated %}
                     <li>
                         <a href="{{ url_for('lloyd.resources') }}">Resources</a>
