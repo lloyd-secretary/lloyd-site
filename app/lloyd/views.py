@@ -7,8 +7,8 @@ from .forms import *
 import json
 import datetime
 import re
-# from oauthlib.oauth2 import WebApplicationClient
-# import requests
+from oauthlib.oauth2 import WebApplicationClient
+import requests
 import unicodedata
 
 OAuthEnabled = True
