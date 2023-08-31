@@ -66,6 +66,36 @@
       <div class="col-md-2"></div>
 
       <div class="col-md-5">
+        
+        {% if user.membership == 'f' %}
+
+        <h3> Rotation Participation </h3>
+          <span> 
+            By checking this box, you'll receive access to Lloyd's rotation mailing list and website. You confirm that you're only participating in Lloyd rotation (not attending dinners for
+            any other houses).
+          </span>
+          <div class="form-group">
+            <form action="" method="post" name="rotation">
+              {{ rotation_form.hidden_tag() }}
+              <div class="checkbox">
+                <label>
+                  <div id='nomail'> {{ rotation_form.rotation }} I would like to participate in rotation with Lloyd (and only with Lloyd) </div>
+                </label><br>
+              </div>
+              {{render_field(rotation_form.submit, class="btn btn-default")}}
+            </form>
+            <br>
+            {% with messages = get_flashed_messages(category_filter=['rotation']) %}
+              {% if messages %}
+                {% for message in messages %}
+                  <span style="color: white;">{{ message }} </span>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+          </div>
+
+          {% endif %}
+
       <h3> Mailing List Subscriptions </h3>
         {% with messages = get_flashed_messages(category_filter=['email']) %}
           {% if messages %}
@@ -103,7 +133,8 @@
           document.getElementById('email_form-nomail').onchange = toggleRadios;
           toggleRadios();
         </script>
-      </div>
+        
+        </div>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}

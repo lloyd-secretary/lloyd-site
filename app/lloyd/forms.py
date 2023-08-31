@@ -40,3 +40,13 @@ class SubscriptionsForm(Form):
 	mailinglists = MultiCheckboxField('mailinglists', choices=[], default=[])
 	submit = SubmitField("Update Subscriptions")
 
+class RotationForm(Form):
+	rotation = BooleanField('rotation')
+	submit = SubmitField("Update")
+
+
+class CheckinForm(Form):
+	name = StringField('name', validators=[], render_kw={"placeholder": "Legal name"})
+	email = EmailField('email', validators=[DataRequired()], render_kw={"placeholder": "email"})
+	submit = SubmitField("Check in")
+

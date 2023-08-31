@@ -29,8 +29,8 @@
 
     <!-- Theme CSS -->
     <link href="{{ url_for('.static', filename='css/agency.css')}}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -40,36 +40,30 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="{{url_for('lloyd.index')}}">Lloyd House</a>
+                <a class="navbar-brand page-scroll" href="{{url_for('rotation.rotation_index')}}">Lloyd House</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" id="menu-buttons">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a href="{{ url_for('lloyd.calendar') }}">Calendar</a>
+                        <a href="{{ url_for('rotation.rotation_index') }}">Home</a>
+                        <div class="underscore"></div>
                     </li>
                     <li>
-                        <a href="{{ url_for('lloyd.houselist') }}">Houselist</a>
+                        <a href="{{ url_for('lloyd.account') }}">Account</a>
+                        <div class="underscore"></div>
                     </li>
-                    <li>
-                        <a href="{{ url_for('lloyd.bylaws') }}">Bylaws</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('lloyd.contact') }}">Contact</a>
-                    </li>
-					<li>
-						<a href="{{ url_for('lloyd.account') }}">Account</a>
-					</li>
                     <li>
                         {% if g.user.is_authenticated %}
                         <a style="color: red;" href="{{ url_for('lloyd.logout') }}">Logout</a>
                         {% else %}
                         <a style="color: gold;" href="{{ url_for('lloyd.login') }}">Login</a>
                         {% endif %}
+                        <div class="underscore"></div>
                     </li>
                 </ul>
             </div>
@@ -82,13 +76,6 @@
     
     {% block content %}{% endblock %}
     
-    <footer>
-        <div class="container">
-            <span class="copyright">Copyright &copy; Anish Thilagar 2016</span>
-        </div>
-    </footer>
-
-
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('.static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 

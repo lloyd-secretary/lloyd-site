@@ -1,0 +1,9 @@
+.froshImage {
+max-width: 100%;
+max-height: 45vw;
+overflow: auto;
+}
+
+textarea {
+    width: 100%;
+}
