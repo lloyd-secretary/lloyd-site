@@ -74,7 +74,7 @@
                         <a href="{{ url_for('lloyd.bylaws') }}">Bylaws</a>
                         <div class="underscore"></div>
                     </li>
-                    {% if current_user.rotation == 0 %}
+                    {% if current_user.is_authenticated == 0 or current_user.rotation == 0 %}
                     <li>
                         <a href="{{ url_for('lloyd.contact') }}">Contact</a>
                         <div class="underscore"></div>
