@@ -185,7 +185,6 @@ def account():
 
 
 @lloyd.route('/checkin', methods=['GET', 'POST'])
-@login_required
 def checkin():
     checkin_form = CheckinForm(request.form, prefix='checkin_form')
 
