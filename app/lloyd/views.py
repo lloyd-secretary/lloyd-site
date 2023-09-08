@@ -269,6 +269,7 @@ def gallery():
     dirname = os.path.dirname(__file__)
     folder = os.path.join(dirname, relfolder)
     hists = os.listdir(folder)
+    hists.sort()
     hists = ['img/album/' + file for file in hists]
     return render_template("gallery.html", hists = hists)
 
