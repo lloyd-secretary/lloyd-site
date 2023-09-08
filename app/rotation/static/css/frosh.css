@@ -29,7 +29,7 @@
 @media (min-width: 768px) {
     #commentBox{
         overflow-y:auto;
-        height:20vw;
+        max-height:20vw;
     }
 }
 
