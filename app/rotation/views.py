@@ -111,13 +111,21 @@ def rotation_frosh(frosh_id):
     # otherwise get info on the frosh
     prefrosh = Prefrosh.query.filter_by(id=frosh_id).first()
     comments = Feedback.query.filter_by(frosh_id=frosh_id).all()
-
-    # oops they don't exist
+    comment_users = [x.user_id for x in comments]
+    user_details = User.query.filter(User.id.in_(comment_users)).all()
+    user_map = {u.id: u.firstname+" "+u.lastname for u in user_details}
+    comments_full = [
+        {
+         "author": user_map[comments[i].user_id],
+         "timestamp": comments[i].timestamp,
+         "comment": comments[i].comment
+         } for i in range(len(comments))]
+    #  oops they don't exist
     if prefrosh is None:
         return redirect(url_for('rotation.index'))
 
     # normal
-    return render_template("frosh.html", prefrosh=prefrosh, comments=comments, form=form)
+    return render_template("frosh.html", prefrosh=prefrosh, comments=comments_full, form=form)
 
 @rotation.route('/img/<path:path>')
 def send_img(path):

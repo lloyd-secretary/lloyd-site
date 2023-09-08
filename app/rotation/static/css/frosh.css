@@ -1,9 +1,51 @@
 .froshImage {
-max-width: 100%;
-max-height: 45vw;
-overflow: auto;
+    max-width: 100%;
+    max-height: 45vw;
+    overflow: auto;
 }
 
-textarea {
-    width: 100%;
+#comment {
+    resize:none;
+    border-radius: 10px;
+}
+
+#commentForm {
+    margin: 20px;
+}
+
+#comment-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #FCD367;
+    color: #222;
+    border:0;
+    width:100%;
+}
+
+#commentBox {
+    padding:10px;
+}
+
+@media (min-width: 768px) {
+    #commentBox{
+        overflow-y:auto;
+        height:20vw;
+    }
+}
+
+.comment {
+    background-color: #333;
+    padding:20px;
+    padding-bottom:10px;
+    border-radius: 3px; 
+    margin: 10px;
+}
+.comment h4 {
+    margin:0;
+    padding-bottom:0;
+}
+
+.comment p {
+    white-space: pre-line;
+    margin-bottom:0;
 }

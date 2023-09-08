@@ -11,25 +11,6 @@
         </div>
         <div class="col-md-6">
             <h1>{{prefrosh.firstname}}</h1>
-            <table class="table">
-                <thead>
-                    <td>Comment</td>
-                    <td>Time</td>
-                </thead>
-                <tbody>
-                {% for comment in comments %}
-                    <tr>
-                        <td>{{comment.comment}}</td>
-                        <td>{{comment.timestamp}}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            
-            </table>
-            <div class="form-group">
-                <form action="" method="post", name="login">
-                  {{ form.hidden_tag() }}
-
                   <p>After each dinner, add comments on who you talked to!</p>
                   <ul>
                     <li>Feel free to add any impression no matter how big or small.</li>
@@ -37,6 +18,20 @@
                     <li>It helps to get a sense for their vibe. Maybe compare them to people we know.</li>
                   </ul>
                   
+              
+            <div id="commentBox">
+                {% for comment in comments %}
+                <div class="comment">
+                    <h4>{{comment['author']}}</h4>
+                        <small>{{comment['timestamp']}}</small>
+                        <p>{{comment['comment']}}</p>
+                </div>
+                {% endfor %}
+            </div>            
+            <div class="form-group">
+                <form action="" method="post", name="login" id="commentForm">
+                  {{ form.hidden_tag() }}
+
                   <div >{{ form.comment(class="form-control") }}</div >
           
                   {% with messages = get_flashed_messages() %}
@@ -49,9 +44,8 @@
                     {% endif %}
                   {% endwith %}
           
-                  <input type="submit" value="Comment" class="btn btn-default" id="login-button">
+                  <input type="submit" value="Submit" class="btn btn-default" id="comment-button">
                 </form>
-              
         </div>
     </div>
   </div>
