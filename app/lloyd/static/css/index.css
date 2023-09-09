@@ -3,12 +3,6 @@
     margin-bottom: 50px
 }
 
-@media (min-width: 768px) {
-    #map-section {
-        padding-top: 100px;
-    }
-}
-
 #events-section-title {
     padding-bottom: 50px;
 }
@@ -27,17 +21,6 @@
     object-fit: scale-down;
 }
 
-@keyframes grow-disappear {
-	0% {
-        transform: scale(1);
-        opacity: 1;
-	}
-	100% {
-        transform: scale(2);
-        opacity: 0;
-	}
-}
-
 #belowMap {
     position: relative;
     top: 0;
@@ -45,17 +28,40 @@
 }
 
 
-#lloyd-map-left.active > #aboveMap {
-    animation: grow-disappear 0.5s forwards;
-}
-
 #aboveMap {
     position: absolute;
     top: 0;
     left: 0;
-    will-change: scale;
-    will-change: opacity;
 }
+
+#aboveMap {
+    opacity: 0;
+}
+
+@media (min-width: 768px) {
+    #aboveMap {
+        opacity: 1;
+    }
+    
+    @keyframes grow-disappear {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    #lloyd-map-left.active > #aboveMap {
+        
+        animation: grow-disappear 0.5s forwards;
+    }
+
+    
+}
+
 
 /* #lloyd-map-left > img {
   width: 100%;
