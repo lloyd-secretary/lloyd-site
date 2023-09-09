@@ -9,16 +9,16 @@ window.addEventListener("scroll", reveal);
 // make the lloyd map "active" when it's visible
 function reveal() {
     var map = document.getElementById("lloyd-map-left");
-    var windowHeight = window.innerHeight;
+    // var windowHeight = window.innerHeight;
     var elementTop = map.getBoundingClientRect().top;
-    var elementVisible = 200;
-    if (elementTop < windowHeight - elementVisible) {
+
+    if (elementTop < 100) {
         map.classList.add("active");
     }   
     
     var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
     var intro = document.getElementsByClassName("intro-text")[0];
-    intro.style.transform = "translate(0,-"+scrollTop/4+"px)";
+    intro.style.transform = "translate(0,-"+scrollTop/2+"px)";
 }
 
 // simple scroll to next section
@@ -46,16 +46,17 @@ function scrollToNext() {
     </header>
 
     <section id="map-section">
-        <h2 style='text-align: center'>
+        <div id="lloyd-map-left">
+            <img id="belowMap" src="{{ url_for('.static', filename='img/top_layer_ll.jpg')}}">
+            <img id="aboveMap" src="{{ url_for('.static', filename='img/base_layer_ll.jpg')}}">
+        </div>
+        <br>
+        <h3 style='text-align: center'>
             The best house
-        </h2>
+        </h3>
         <h4 class="text-muted" style='text-align: center'>
             (of the north houses that are to the right of page and the left of venerable)
         </h4>
-        <br>
-    <div id="lloyd-map-left">
-        <img src="{{ url_for('.static', filename='img/campus_map.jpg')}}">
-    </div>
     </section id="map-section">
 
     <div class="container" id="events-section">
