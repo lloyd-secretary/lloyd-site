@@ -17,7 +17,6 @@
     position: relative;
     top: 0;
     left: 0;
-
     height: 100vh;
     overflow: hidden;
 }
@@ -54,6 +53,8 @@
     position: absolute;
     top: 0;
     left: 0;
+    will-change: scale;
+    will-change: opacity;
 }
 
 /* #lloyd-map-left > img {
