@@ -280,7 +280,7 @@ header {
   color: white;
 }
 header .intro-text {
-  padding-top: 0px;
+  padding-top: 25vh;
   padding-bottom: 50px;
 }
 header .intro-text .intro-lead-in {
@@ -301,7 +301,6 @@ header .intro-text .intro-heading {
 }
 @media (min-width: 768px) {
   header .intro-text {
-    padding-top: 120px;
     padding-bottom: 200px;
   }
   header .intro-text .intro-lead-in {
