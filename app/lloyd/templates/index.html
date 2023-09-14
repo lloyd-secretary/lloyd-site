@@ -116,4 +116,60 @@ function scrollToNext() {
             </div>
         </div>
     </div>
+
+    <section id="lloydgpt">
+        <div class="container">
+            <div class="col-lg-12 text-center">
+                <h3 class="section-heading"">Questions about Lloyd?</h3>
+                <span>ask lloydgpt, our AI trained to answer questions on Lloyd, rotation, and Caltech in general!</span>
+                <form  onsubmit="return goto_gpt()">
+                    <input id="dynamicText" placeholder="What's the best part about Lloyd?">
+                    <input id="gptSubmit" type="submit" value="Ask LloydGPT">
+                </form>
+                <br>
+                <br>
+                <br>
+                <span>(disclaimer: sometimes lloydgpt gets a little confused... to actually learn about Lloyd, pull up!)</span>
+            </div>
+        </div>
+    </section id="map-section">
+
+    <script>
+        function goto_gpt() {
+            var textInput = document.getElementById("dynamicText");
+            var url = "https://lloydgpt.vercel.app/?q="+encodeURIComponent(textInput.value);
+            window.open(url, "_blank");
+            // console.log(url);
+            return false;
+        }
+
+        var phrases = [
+            "What's the best part about Lloyd?",
+            "What do people do in Lloyd?",
+            "What types of rooms are in Lloyd?",
+            "What is there to do in Lloyd if you don't drink?",
+            "What is there to do in Lloyd if you don't drink?"
+        ];
+        var textInput = document.getElementById("dynamicText");
+        var phraseIndex = 0;
+        var forward = true;
+        var phrasePos = 0;
+        setInterval(async () => {
+            if (forward) {
+                phrasePos ++;
+                if (phrasePos === phrases[phraseIndex].length) {
+                    await new Promise(r => setTimeout(r, 2000));
+                    forward = false;
+                }
+            } else {
+                phrasePos --;
+                if (phrasePos === 0) {
+                    forward = true;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                }
+            }
+            textInput.placeholder = phrases[phraseIndex].substring(0, phrasePos);
+        }, 50)
+    </script>
+
 {% endblock %}

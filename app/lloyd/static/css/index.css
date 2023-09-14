@@ -39,6 +39,35 @@
     opacity: 0;
 }
 
+#lloydgpt {
+    background-color: #222;
+}
+
+#dynamicText {
+    padding: 2vh;
+    margin-top: 5vh;
+    font-size: 2vh;
+    width: 100%;
+    text-align: center; 
+}
+#dynamicText:focus {
+    outline-width: 0;
+}
+#dynamicText::placeholder {
+    color: #bbb;
+}
+#dynamicText:focus::placeholder {
+    color: transparent;
+}
+#gptSubmit {
+    padding: 2vh 3vh;
+    font-size: 2vh;
+    margin: 2vh;
+    background-color: #FCD367;
+    color: black;
+    font-weight: bold;
+}
+
 @media (min-width: 768px) {
     #aboveMap {
         opacity: 1;
@@ -56,11 +85,8 @@
     }
 
     #lloyd-map-left.active > #aboveMap {
-        
         animation: grow-disappear 0.5s forwards;
     }
-
-    
 }
 
 
