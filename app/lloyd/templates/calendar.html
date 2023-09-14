@@ -38,7 +38,6 @@
                 }
                 
             });
-            
         });
 
     </script>
@@ -48,7 +47,28 @@
 
     <div id='loading'>loading...</div>
     <div id='calendar'></div>
+    <div id='agendaCalendar'></div>
 
+<script>
 
+update = function() {  
+    var events = document.getElementsByClassName("fc-content");  
+    console.log(events.length);
+    if (window.innerWidth < 768) {
+        document.getElementById("calendar").style.display = "none";
+        var main = document.getElementById("agendaCalendar");
+        for (var i = 0; i < events.length; i ++) {
+            console.log(events[i]);
+            var newNode = document.createElement("div");
+            newNode.classList.add("agendaItem");
+            var eventName = document.createElement("h3");
+            eventName.appendChild(document.createTextNode(events[i].lastChild.innerText));
+            newNode.appendChild(eventName);
+            main.appendChild(newNode);
+        }
+        console.log(main.children);
+    }
+}
+</script>
 
 {% endblock %}
