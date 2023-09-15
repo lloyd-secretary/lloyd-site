@@ -24,7 +24,7 @@ def before_request():
         return redirect(url_for('lloyd.login'))
     # require user.rotation to see any pages
     if not (g.user.rotation):
-        return redirect(url_for('lloyd.index'))
+        return redirect(url_for('lloyd.account'))
     
     #print(g.user, file=sys.stderr)
 
@@ -61,7 +61,7 @@ def rotation_index():
     if dinner == None:
         prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
         if prevDinners == None:
-            dinner = 0
+            dinner = Dinner.query.first().id
         else:
             dinner = prevDinners.id
 
