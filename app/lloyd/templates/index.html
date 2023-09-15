@@ -137,7 +137,8 @@ function scrollToNext() {
     <script>
         function goto_gpt() {
             var textInput = document.getElementById("dynamicText");
-            var url = "https://lloydgpt.vercel.app/?q="+encodeURIComponent(textInput.value);
+            var gptDomain = "www.lloydgpt.com"
+            var url = "https://" + gptDomain + "/?q="+encodeURIComponent(textInput.value);
             window.open(url, "_blank");
             // console.log(url);
             return false;
@@ -148,7 +149,7 @@ function scrollToNext() {
             "What do people do in Lloyd?",
             "What types of rooms are in Lloyd?",
             "What is there to do in Lloyd if you don't drink?",
-            "What is there to do in Lloyd if you don't drink?"
+            "What events does Lloyd have?"
         ];
         var textInput = document.getElementById("dynamicText");
         var phraseIndex = 0;
