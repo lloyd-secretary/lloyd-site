@@ -173,6 +173,10 @@ def account():
     elif rotation_form.submit.data and rotation_form.validate_on_submit():
         current_user.rotation = rotation_form.rotation.data
         db.session.commit()
+        
+        if current_user.rotation == 1:
+            return redirect(url_for('rotation.rotation_index'))
+        
         flash('rotation status info successfully updated', 'rotation')
 
 
