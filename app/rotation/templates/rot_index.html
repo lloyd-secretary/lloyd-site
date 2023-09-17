@@ -28,7 +28,7 @@
         <div class="imageContainer">
             <a  href="{{ url_for('rotation.rotation_frosh', frosh_id=p.id) }}">
                 <img 
-                    src="{{ url_for('.static', filename=p.photo_url[:14]+'small_'+p.photo_url[14:])}}" 
+                    src="{{ url_for('.static', filename=p.photo_url)}}" 
                     onError="{{'this.onerror=null;this.src=\''+url_for('.static', filename='img/placeholder.png')+'\''}}"
                     class="img-thumbnail"
                 >
