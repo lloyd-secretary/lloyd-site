@@ -42,10 +42,12 @@
 #lloydgpt {
     background-color: #222;
 }
-
-#dynamicText {
-    padding: 2vh;
+#lloyd-gpt-form {
     margin-top: 5vh;
+}
+#dynamicText {
+    margin-top: 1vh;
+    padding: 2vh;
     font-size: 2vh;
     width: 100%;
     text-align: center; 
@@ -66,6 +68,27 @@
     background-color: #FCD367;
     color: black;
     font-weight: bold;
+}
+
+#question-examples {
+    margin-top: 5vh;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#question-examples p {
+    color: black;
+    border-radius: 10px;
+    background-color: #FCD367;
+    padding: 2vh;
+    font-size: 2vh;
+    max-width: 100vw;
+    margin: 2vh;
+}
+#question-examples p:hover {
+    cursor: pointer;
+    background-color: #DCB347
 }
 
 @media (min-width: 768px) {

@@ -33,7 +33,14 @@ def get_google_provider_cfg():
 @lloyd.route('/')
 @lloyd.route('/index')
 def index():
-    return render_template("index.html")
+    questions = [
+        "When is Red Door open? Can I really get a quesadilla at 1:55am?",
+        "What do I do if there are ants in my room?",
+        "Are all rooms in lloyd doubles? Also, what's a double?",
+        "Summarize the process of rotation for me",
+        "What are the excomm positions? How do I become president of Lloyd?"
+    ]
+    return render_template("index.html", questions=questions)
 
 @login_manager.user_loader
 def load_user(id):
