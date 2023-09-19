@@ -23,7 +23,7 @@
       margin-top: 45px;
     }
 
-    #login-button {
+    #glogin-button {
       width: 100%;
       margin-top: 10px;
       padding: 15px;
@@ -34,7 +34,7 @@
       cursor: pointer;
     }
 
-    #glogin-button {
+    #login-button, #expand-button {
       width: 100%;
       margin-top: 10px;
       padding: 15px;
@@ -47,6 +47,15 @@
     }
 
   </style>
+
+  <script>
+  
+  function openUp() {
+    document.getElementById('login-section').style.display = "inline"
+    document.getElementById('expand-button').style.display = "none"
+  }
+  
+  </script>
 </head>
 <body>
   
@@ -55,7 +64,14 @@
 <h2 id="login-title">
   Login
 </h2>
+
 <p>You can login with your username (firstlast) and password, or with your Caltech email. </p>
+
+<input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" id="glogin-button">
+<input type="submit" value="Login with Password" class="btn btn-default" id="expand-button" onclick="openUp()">
+
+<div id="login-section" style="display:none;">
+  <br><br>
     <div class="form-group">
       <form action="" method="post", name="login">
         {{ form.hidden_tag() }}
@@ -74,11 +90,9 @@
         {% endwith %}
 
         <input type="submit" value="Login" class="btn btn-default" id="login-button">
-        <br>
-        <br>
-        <input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" id="glogin-button">
       </form>
     </div>
+  </div>
   </div>
 </body>
 
