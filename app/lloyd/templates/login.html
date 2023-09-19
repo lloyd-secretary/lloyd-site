@@ -66,8 +66,9 @@
 </h2>
 
 <p>You can login with your username (firstlast) and password, or with your Caltech email. </p>
-
-<input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" id="glogin-button">
+<form action="/lloyd/Glogin" method="get">
+  <input type="submit" value="Login with Google" class="btn btn-default" id="glogin-button">
+</form>
 <input type="submit" value="Login with Password" class="btn btn-default" id="expand-button" onclick="openUp()">
 
   <br><br>
