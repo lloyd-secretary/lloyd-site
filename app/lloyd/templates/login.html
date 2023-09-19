@@ -70,29 +70,29 @@
 <input type="submit" value="Login with Google" class="btn btn-default" formaction="/lloyd/Glogin" id="glogin-button">
 <input type="submit" value="Login with Password" class="btn btn-default" id="expand-button" onclick="openUp()">
 
-<div id="login-section" style="display:none;">
   <br><br>
     <div class="form-group">
       <form action="" method="post", name="login">
-        {{ form.hidden_tag() }}
-        
-        <div>{{ form.username(size=10) }}</div>
-        <div>{{ form.password(size=10) }}</div>
+        <div id="login-section" style="display:none;">
+          {{ form.hidden_tag() }}
+          
+          <div>{{ form.username(size=10) }}</div>
+          <div>{{ form.password(size=10) }}</div>
 
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-                <h6 style="margin-top: 10px; text-transform: lowercase; text-align: center; color: red; font-size: 15px;">
-                  {{ message }} 
-                </h6>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                  <h6 style="margin-top: 10px; text-transform: lowercase; text-align: center; color: red; font-size: 15px;">
+                    {{ message }} 
+                  </h6>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
 
-        <input type="submit" value="Login" class="btn btn-default" id="login-button">
+          <input type="submit" value="Login" class="btn btn-default" id="login-button">
+        </div>
       </form>
     </div>
-  </div>
   </div>
 </body>
 
