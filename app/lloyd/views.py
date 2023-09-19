@@ -38,7 +38,8 @@ def index():
         "What do I do if there are ants in my room?",
         "Are all rooms in lloyd doubles? Also, what's a double?",
         "Summarize the process of rotation for me",
-        "What are the excomm positions? How do I become president of Lloyd?"
+        "What are the excomm positions? How do I become president of Lloyd?",
+        "Who can I reach out to for emotional support?"
     ]
     return render_template("index.html", questions=questions)
 
