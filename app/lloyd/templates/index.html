@@ -15,10 +15,6 @@ function reveal() {
     if (elementTop < 100) {
         map.classList.add("active");
     }   
-    
-    var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    var intro = document.getElementsByClassName("intro-text")[0];
-    intro.style.transform = "translate(0,-"+scrollTop/2+"px)";
 }
 
 // simple scroll to next section
