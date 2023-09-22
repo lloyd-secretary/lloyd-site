@@ -87,14 +87,17 @@ def rotation_index():
     # this one is normal
     if right != None:
         right = right.id
-
+        
+    all_prefrosh = map(lambda item: {'id': str(item.id), 'name': '"' + item.firstname + " " + item.lastname + '"'}, Prefrosh.query.all())
+    print (all_prefrosh[:5])
     # the left and right variables are LINKS that might be empty if there is no link in that direction
     return render_template(
         "rot_index.html", 
         prefrosh=prefrosh_details, 
         left=url_for('rotation.rotation_index', dinner=left) if left != None else "",
         right=url_for('rotation.rotation_index', dinner=right) if right != None else "",
-        dinner=datetime.datetime.strftime(dinner_info.timestamp, '%b %d, %I:%M %p')
+        dinner=datetime.datetime.strftime(dinner_info.timestamp, '%b %d, %I:%M %p'),
+        all_prefrosh=all_prefrosh
     )
 
 @rotation.route('/frosh/<int:frosh_id>', methods=['GET', 'POST'])

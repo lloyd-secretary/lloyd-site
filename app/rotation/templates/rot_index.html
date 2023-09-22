@@ -2,10 +2,57 @@
 {% block content %}
 
 <link href="{{ url_for('.static', filename='css/rot_index.css')}}" rel="stylesheet">
+<script src="{{ url_for('.static', filename='js/bootstrap3-typeahead.min.js')}}"></script>
 
 <div class="container">
     <h2>hello! {% if dinner != '' %} welcome to dinner: {{dinner}} {% endif %}</h2>
     <p>click on a student to see comments</p>
+    <form onsubmit="return findStudent()">
+        <input id="typeahead-input" type="text" data-provide="typeahead" />
+        <input type="submit">
+    </form>
+</div>   
+
+<script type="text/javascript">
+var $input = $("#typeahead-input");
+$input.typeahead({
+  source: [
+{% for item in all_prefrosh %}
+    { id: {{item['id']}}, name: {{item['name']|safe}} },
+{% endfor %}
+  ],
+  autoSelect: true
+});
+
+var currId = null;
+
+$input.change(function() {
+  var current = $input.typeahead("getActive");
+  if (current) {
+    // Some item from your model is active!
+    if (current.name == $input.val()) {
+      // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+      currId = current.id;
+      console.log(currId);
+    } else {
+      // This means it is only a partial match, you can either add a new item
+      // or take the active if you don't want new items
+    }
+  } else {
+    // Nothing is active so it is a new value (or maybe empty value)
+  }
+});
+
+function findStudent() {
+    console.log("/rotation/frosh/" + currId);
+    if (currId != null) {
+        window.location.href = "/rotation/frosh/" + currId;
+    }
+    return false;
+}
+
+</script>
+ 
     <div id="navHolder">
         {% if left != '' %} <a href="{{left}}">
             <div class="customIcon" id="leftIcon">
@@ -38,4 +85,5 @@
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}
