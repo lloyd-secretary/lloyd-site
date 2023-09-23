@@ -49,4 +49,24 @@
         </div>
     </div>
   </div>
+  
+  <script>
+  /*
+  window.onblur = function() {
+    window.location.href = "/lloyd"
+  }
+  */
+  var item = window.location.href;
+  var text = localStorage.getItem(item) || "";
+  document.getElementById("comment").value = text;
+  document.getElementById("comment").oninput = (event) => {
+      localStorage.setItem(item, event.target.value);
+  }
+  var commentButton = document.getElementById("comment-button");
+  var commentForm = document.getElementById("commentForm");
+  commentForm.addEventListener('submit', function(e) {
+    commentButton.disabled = true;
+    localStorage.setItem(item, "");
+  });
+  </script>
 {% endblock %}
