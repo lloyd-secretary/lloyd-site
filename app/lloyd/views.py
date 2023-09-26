@@ -201,10 +201,14 @@ def checkin():
     checkin_form = CheckinForm(request.form, prefix='checkin_form')
 
     if checkin_form.submit.data and checkin_form.validate_on_submit():
-        print ("here")
-        print (dir(datetime.datetime))
-        # get the most recent dinner
-        prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
+        dinner = request.args.get('dinner')
+
+        # special case
+        if dinner == 'dessert':
+            prevDinners = Dinner.query.filter_by(id=42).first()
+        else:
+            # get the most recent dinner
+            prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
 
         # get the frosh that matches based on email
         froshName = checkin_form.name.data
