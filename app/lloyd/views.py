@@ -198,26 +198,24 @@ def account():
 
 @lloyd.route('/checkin', methods=['GET', 'POST'])
 def checkin():
-    checkin_form = CheckinForm(request.form, prefix='checkin_form')
+    all_prefrosh = map(lambda item: {'id': str(item.id), 'name': '"' + item.firstname + " " + item.lastname + '"'}, Prefrosh.query.all())
 
-    if checkin_form.submit.data and checkin_form.validate_on_submit():
+    if request.method == "POST":
         dinner = request.args.get('dinner')
 
         # special case
-        if dinner == 'dessert':
-            prevDinners = Dinner.query.filter_by(id=42).first()
-        else:
-            # get the most recent dinner
-            prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
+        prevDinners = Dinner.query.filter_by(id=42).first()
+        # get the most recent dinner
+        # prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
 
         # get the frosh that matches based on email
-        froshName = checkin_form.name.data
+        froshName = request.form.get("name")
         if len(froshName.split(" ")) == 1:
             flash("Please provide your full name.")
             return render_template("checkin.html",
-                            checkin_form=checkin_form)
+                            all_prefrosh=all_prefrosh)
 
-        froshFound = Prefrosh.query.filter(Prefrosh.firstname + " " + Prefrosh.lastname == checkin_form.name.data).first()
+        froshFound = Prefrosh.query.filter(Prefrosh.firstname + " " + Prefrosh.lastname == froshName).first()
 
         if froshFound == None:
             candidates = []
@@ -229,17 +227,17 @@ def checkin():
             for frosh in Prefrosh.query.filter(Prefrosh.lastname.ilike(lastName)).all():
                 candidates.append(frosh.firstname + " " + frosh.lastname)
 
-            print (candidates)
-
             if len(candidates) == 0:
                 flash("Hmm.... we couldn't find a prefrosh with that first or last name")
                 return render_template("checkin.html",
-                            checkin_form=checkin_form)
+                            all_prefrosh=all_prefrosh,
+                            dinner=request.args.get('dinner'))
             else:
                 flash("Hmm.... we couldn't find a prefrosh with that name. Here are the people we have with the same first or last names: " + ", ".join(candidates))
                 flash("Try using the exact name we have on record... it might be legal name...")
                 return render_template("checkin.html",
-                            checkin_form=checkin_form)
+                            all_prefrosh=all_prefrosh,
+                            dinner=request.args.get('dinner'))
 
         frosh = FroshDinners(frosh_id=froshFound.id, dinner_id=prevDinners.id)
         try:
@@ -251,7 +249,7 @@ def checkin():
             flash('You\'ve already checked in!', 'error')
 
     return render_template("checkin.html",
-                            checkin_form=checkin_form)
+                            all_prefrosh=all_prefrosh)
 
 
 

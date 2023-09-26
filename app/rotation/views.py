@@ -89,7 +89,7 @@ def rotation_index():
         right = right.id
         
     all_prefrosh = map(lambda item: {'id': str(item.id), 'name': '"' + item.firstname + " " + item.lastname + '"'}, Prefrosh.query.all())
-    print (all_prefrosh[:5])
+    
     # the left and right variables are LINKS that might be empty if there is no link in that direction
     return render_template(
         "rot_index.html", 

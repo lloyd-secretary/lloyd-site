@@ -12,20 +12,19 @@
 {% endmacro %}
 
 {% block content %}
+<script src="{{ url_for('.static', filename='js/bootstrap3-typeahead.min.js')}}"></script>
+
 	<div class="container">
       <div class="col-md-6  col-md-offset-3">
         <h1>Welcome to Lloyd!</h1>
           <p>Submit this form to let us know that you participated in the most recent free dinner!</p>
   
           <div class="form-group">
-            <form action="" method="post" name="account">
-              {{ checkin_form.hidden_tag() }}
-              Name {{render_field(checkin_form.name)}} <br>
-              Email {{render_field(checkin_form.email)}} <br>
-              {{render_field(checkin_form.submit, class="btn btn-default")}}
+            <form action="{{ url_for('lloyd.checkin')}}" method="post">
+              <input name="name" id="typeahead-input" type="text" data-provide="typeahead" placeholder="Enter your name"/>
+              <input type="submit">
             </form>
           </div>
-        
 
           {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -40,6 +39,17 @@
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
     </div>
-	
 
+<script type="text/javascript">
+var $input = $("#typeahead-input");
+$input.typeahead({
+  source: [
+{% for item in all_prefrosh %}
+    { id: {{item['id']}}, name: {{item['name']|safe}} },
+{% endfor %}
+  ],
+  autoSelect: true
+});
+
+</script>
 {% endblock %}
