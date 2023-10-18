@@ -23,8 +23,11 @@ def before_request():
     else:
         return redirect(url_for('lloyd.login'))
     # require user.rotation to see any pages
-    if not (g.user.rotation):
-        return redirect(url_for('lloyd.account'))
+    #if not (g.user.rotation):
+    #    return redirect(url_for('lloyd.account'))
+    # for non-rotation season let's not show the frosh this lol
+    return redirect(url_for('lloyd.login'))
+    
     
     #print(g.user, file=sys.stderr)
 
