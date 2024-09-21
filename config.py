@@ -2,7 +2,7 @@ import os
 
 SQLALCHEMY_DATABASE_URI = 'mysql://web@localhost:3306/lloyd'
 SQLALCHEMY_BINDS = {
-    'rotation':        'mysql://web@localhost:3306/rotation',
+    'rotation2024':        'mysql://web@localhost:3306/rotation2024',
 }
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
