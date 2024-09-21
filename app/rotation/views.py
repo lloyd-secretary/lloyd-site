@@ -23,16 +23,16 @@ def before_request():
     else:
         return redirect(url_for('lloyd.login'))
     # require user.rotation to see any pages
-    #if not (g.user.rotation):
-    #    return redirect(url_for('lloyd.account'))
+    if not (g.user.rotation):
+       return redirect(url_for('lloyd.account'))
     # for non-rotation season let's not show the frosh this lol
-    return redirect(url_for('lloyd.login'))
+    # return redirect(url_for('lloyd.login'))
     
     
     #print(g.user, file=sys.stderr)
 
-    #if g.user.membership == 's':
-    #    return redirect(url_for('lloyd.index'))
+    if g.user.membership == 's':
+       return redirect(url_for('lloyd.index'))
 
 def is_admin():
     return g.user.admin
@@ -64,6 +64,17 @@ def rotation_index():
     if dinner == None:
         prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
         if prevDinners == None:
+            firstQuery = Dinner.query.first()
+            if firstQuery == None:
+                return render_template(
+                    "rot_index.html", 
+                    prefrosh=[], 
+                    left="",
+                    right="",
+                    dinner="No Dinner",
+                    all_prefrosh=[]
+                )
+            
             dinner = Dinner.query.first().id
         else:
             dinner = prevDinners.id

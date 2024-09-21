@@ -7,6 +7,8 @@ db.reflect()
 # Anish's picture is temporarily the default
 default_photo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Jeb_Bush_by_Gage_Skidmore_2.jpg/1200px-Jeb_Bush_by_Gage_Skidmore_2.jpg"
 
+DATABASE_NAME = 'rotation2024'
+
 class User(db.Model, UserMixin):
     __tablename__ = 'houselist'
 
@@ -72,7 +74,7 @@ def load_user(user_id):
 
 class Prefrosh(db.Model):
     __tablename__ = 'prefrosh'
-    __bind_key__ = 'rotation'
+    __bind_key__ = DATABASE_NAME
 
     def __repr__(self):
         return '<Prefrosh %r>' % (self.firstname + " " + self.lastname)
@@ -93,7 +95,7 @@ class Prefrosh(db.Model):
 
 class Feedback(db.Model):
     __tablename__ = 'feedback'
-    __bind_key__ = 'rotation'
+    __bind_key__ = DATABASE_NAME
 
     def __repr__(self):
         return '<Feedback %r>' % (str(self.user_id) + " for " + str(self.frosh_id))
@@ -115,12 +117,12 @@ class Feedback(db.Model):
 
 class Dinner(db.Model):
     __tablename__ = 'dinners'
-    __bind_key__ = 'rotation'
+    __bind_key__ = DATABASE_NAME
 
 
 class FroshDinners(db.Model):
     __tablename__ = 'froshdinners'
-    __bind_key__ = 'rotation'
+    __bind_key__ = DATABASE_NAME
    
     def __init__(self, frosh_id, dinner_id):
         self.frosh_id = frosh_id
