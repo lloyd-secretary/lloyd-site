@@ -19,6 +19,21 @@ h2 {
     );
 }
 
+h4 {
+    margin: 0px;
+}
+
+.name {
+    text-align: center;
+    font-size: 15pt;
+}
+.role {
+    text-align: center;
+    font-size: 10pt;
+    color: goldenrod;
+    padding-top: 4pt;
+}
+
 .resources-item {
     width: 100%;
     padding: 10px;
