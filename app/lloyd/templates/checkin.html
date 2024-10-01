@@ -12,12 +12,14 @@
 {% endmacro %}
 
 {% block content %}
+
+<link href="{{ url_for('.static', filename='css/checkin.css')}}" rel="stylesheet">
 <script src="{{ url_for('.static', filename='js/bootstrap3-typeahead.min.js')}}"></script>
 
 	<div class="container">
       <div class="col-md-6  col-md-offset-3">
         <h1>Welcome to Lloyd!</h1>
-          <p>Submit this form to let us know that you participated in the most recent dinner or dessert night (it'll automatically figure out which is most recent and check you in for that)</p>
+          <p id="instructions">Submit this form to let us know that you participated in the most recent dinner!</p>
   
           <div class="form-group">
             <form action="{{ url_for('lloyd.checkin')}}" method="post">

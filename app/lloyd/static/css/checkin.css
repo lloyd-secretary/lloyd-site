@@ -1,0 +1,27 @@
+h1 {
+    font-size: 30pt;
+    color: goldenrod;
+    text-align: center;
+}
+
+#instructions {
+    font-size: 20pt;
+    color: white;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=text] {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+input[type=submit] {
+    width: 20%;
+    margin: auto;
+}
