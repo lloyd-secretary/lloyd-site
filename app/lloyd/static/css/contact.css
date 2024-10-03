@@ -19,6 +19,10 @@ h2 {
     );
 }
 
+#jasmine {
+
+}
+
 h4 {
     margin: 0px;
 }
@@ -66,8 +70,9 @@ h4 {
     height: 100%;
     transition: 0.3s;
 }
-.resources-image:hover img {
-    scale: 1.2;
+
+#jasmine-image:hover img {
+    scale: 1.0;
 }
 
 .resources-image {
