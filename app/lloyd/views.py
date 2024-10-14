@@ -206,7 +206,8 @@ def checkin():
         # special case
         # prevDinners = Dinner.query.filter_by(id=42).first()
         # get the most recent dinner
-        prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
+        # prevDinners = Dinner.query.order_by(-Dinner.timestamp).filter(Dinner.timestamp < datetime.datetime.now()).first()
+        prevDinners = Dinner.query.filter_by(id=10).first()
 
         # get the frosh that matches based on email
         froshName = request.form.get("name")
