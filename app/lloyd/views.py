@@ -278,6 +278,10 @@ def calendar():
 def contact():
     return render_template("contact.html")
 
+@lloyd.route('/donate')
+def donate():
+    return render_template("donate.html")
+
 @lloyd.route('/gallery')
 def gallery():
     relfolder = 'static/img/album/'
