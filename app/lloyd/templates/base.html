@@ -72,6 +72,10 @@
                         <a href="{{ url_for('lloyd.contact') }}">Contact</a>
                         <div class="underscore"></div>
                     </li>
+                    <li>
+                        <a href="{{ url_for('lloyd.donate') }}">Donate</a>
+                        <div class="underscore"></div>
+                    </li>
                     {% if current_user.is_authenticated %}
                     <li>
                         <a href="{{ url_for('lloyd.resources') }}">Resources</a>
