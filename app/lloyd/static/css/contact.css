@@ -53,6 +53,9 @@ h4 {
     .resources-item {
         width: 200px;
     }
+    .resources-item {
+        height: 200px;
+    }
 }
 
 .resources-item p {
@@ -62,6 +65,8 @@ h4 {
 
 .resources-image {
     border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .resources-image img {
@@ -75,8 +80,8 @@ h4 {
     scale: 1.0;
 }
 
-.resources-image {
+/* .resources-image {
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
 }
 
