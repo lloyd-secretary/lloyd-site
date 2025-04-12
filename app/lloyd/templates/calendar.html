@@ -1,79 +1,74 @@
 {%extends "base.html" %}
-{% block content %}
-
-    <link href="{{ url_for('.static', filename='css/calendar.css')}}" rel="stylesheet">
-
-    <div id="bylawtitle">UPCOMING EVENTS</div>
-
-		<div id="calendarContent">
-
-      <!-- <div id="month-title">September</div> -->
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/sep_30.png">
-        </div>
-      </div>
-
-      <!-- <div id="month-title">October</div> -->
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/oct_5.png">
-        </div>
-      </div>
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/oct_12.png">
-        </div>
-      </div>
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/oct_20.png">
-        </div>
-      </div>
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/oct_26.png">
-        </div>
-      </div>
-
-      <!-- <div id="month-title">November</div> -->
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/nov_8.png">
-        </div>
-      </div>
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/nov_15.png">
-        </div>
-      </div>
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/nov_17.png">
-        </div>
-      </div>
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/nov_25.png">
-        </div>
-      </div>
-
-      <!-- <div id="month-title">December</div> -->
-
-      <div class="calendar-item">
-        <div class="calendar-image">
-          <img src="static/img/calendar/dec_7.png">
-        </div>
-      </div>
-    </div>
+ {% block content %}
+ 
+     <!-- FullCalendar -->
+     <link href="{{ url_for('.static', filename='fullcalendar/fullcalendar.css') }}" rel='stylesheet' />
+     <link href="{{ url_for('.static', filename='fullcalendar/fullcalendar.print.css') }}" rel='stylesheet' media='print' />
+     <!-- <script src="{{ url_for('.static', filename='fullcalendar/lib/jquery.min.js') }}"></script> -->
+     <script src="{{ url_for('.static', filename='fullcalendar/lib/moment.min.js') }}"></script>
+     <script src="{{ url_for('.static', filename='fullcalendar/fullcalendar.min.js') }}"></script>
+     <script src="{{ url_for('.static', filename='fullcalendar/gcal.js') }}"></script>
+     <link href="{{ url_for('.static', filename='css/calendar.css')}}" rel="stylesheet">
+     <script type='text/javascript'>
+ 
+         $(document).ready(function() {
+         
+             $('#calendar').fullCalendar({
+ 
+                 // To create your own Google API key, follow the directions here:
+                 // http://fullcalendar.io/docs/google_calendar/
+                  googleCalendarApiKey: 'AIzaSyA0GLgOv7q7F_k3kvLBIEtH9NQX7vOPtMg', //socd calendar
+                 // googleCalendarApiKey: 'AIzaSyA0FfmKEBMRmXh_Fuqn9-rA5putIv3Oj1w', //irene's calendar
+                 display: 'list-item',
+                 // US Holidays
+                 //events: 'en.usa#holiday@group.v.calendar.google.com',
+                 // substitute with lloyd's own public calendar
+                 events: '9j2e3n5gbfp0b1btuv0j4hhu7o@group.calendar.google.com', //socd calendar
+                 // events: 'v9s5qsmgem8eb721863ta6813k@group.calendar.google.com', //irene's calendar
+                 eventClick: function(event) {
+                     // opens events in a popup window
+                     window.open(event.url, 'gcalevent', 'width=700,height=600');
+                     return false;
+                 },
+ 
+                 initialView: 'listWeek',
+                 
+                 loading: function(bool) {
+                     $('#loading').toggle(bool);
+                 }
+                 
+             });
+         });
+ 
+     </script>
+     <style>
+ 
+ </style>
+ 
+     <div id='loading'>loading...</div>
+     <div id='calendar'></div>
+     <div id='agendaCalendar'></div>
+ 
+ <script>
+ 
+ update = function() {  
+     var events = document.getElementsByClassName("fc-content");  
+     console.log(events.length);
+     if (window.innerWidth < 768) {
+         document.getElementById("calendar").style.display = "none";
+         var main = document.getElementById("agendaCalendar");
+         for (var i = 0; i < events.length; i ++) {
+             console.log(events[i]);
+             var newNode = document.createElement("div");
+             newNode.classList.add("agendaItem");
+             var eventName = document.createElement("h3");
+             eventName.appendChild(document.createTextNode(events[i].lastChild.innerText));
+             newNode.appendChild(eventName);
+             main.appendChild(newNode);
+         }
+         console.log(main.children);
+     }
+ }
+ </script>
 
 {% endblock %}

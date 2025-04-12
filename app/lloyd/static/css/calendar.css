@@ -1,106 +1,38 @@
-#calendarContent {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding-left:100px;
-    padding-right:100px; 
-    margin:0 auto;
-    margin-top: 50px;
-    background-image: linear-gradient(
-        rgba(1, 1, 1, 0),
-        #333,
-        rgba(1, 1, 1, 0)
-    );
+
+#calendar {
+    font-size: 10px;
+    width: 768px;
+    margin: 0 auto;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 }
 
-#month-title {
-    width:100%;
-    padding-top: 10pt;
-    padding-bottom: 10pt;
-    text-align: center;
-    font-size: 20pt;
-    color:goldenrod;
+
+.fc-view-container {
+    font-family: 'Montserrat';
+    font-size: 12px;
 }
 
-.calendar-item {
-    width: 30%;
-    padding: 10px;
-    margin-top: 0px;
+.fc-day-grid-event {
+    padding: 2px;
 }
 
-.calendar-item p {
-    text-indent: 0px;
-    font-size: 15px;
+.fc-event,
+.fc-title {
+    white-space: normal;
 }
 
-.calendar-image {
-    border-radius: 10px;
-}
-
-.calendar-image img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.calendar-image {
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-/* Responsive CSS for small screens */
-@media (max-width: 768px) {
-    #calendarContent {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: flex-start;
-        padding-left:30px;
-        padding-right:30px; 
-        margin:0 auto;
-        margin-top: 50px;
-        background-image: linear-gradient(
-            rgba(1, 1, 1, 0),
-            #333,
-            rgba(1, 1, 1, 0)
-        );
-    }
-    
-    #month-title {
-        width:100%;
-        padding-top: 10pt;
-        padding-bottom: 10pt;
-        text-align: center;
-        font-size: 20pt;
-        color:goldenrod;
-    }
-
-    .calendar-item {
+@media (min-width: 868px) {
+    #calendar {
+        font-size: 14px;
+        padding: 50px;
         width: 100%;
+    }
+
+    .fc-view-container {
+        font-size: 17px;
+    }
+
+    .fc-day-grid-event {
         padding: 5px;
-        margin-top: 0px;
-    }
-    
-    .calendar-item p {
-        text-indent: 0px;
-        font-size: 15px;
-    }
-    
-    .calendar-image {
-        border-radius: 10px;
-    }
-    
-    .calendar-image img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .calendar-image {
-        overflow: hidden;
-        margin-bottom: 20px;
     }
 }
