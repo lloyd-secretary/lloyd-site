@@ -8,7 +8,7 @@ click==6.6
 cryptography==3.3.2
 decorator==4.0.10
 enum34==1.1.10
-Flask==1.0
+Flask==2.2.5
 Flask-Bcrypt==0.7.1
 Flask-Cors==3.0.2
 Flask-Login==0.3.2
