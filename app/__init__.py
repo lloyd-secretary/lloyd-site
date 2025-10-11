@@ -29,7 +29,7 @@ login_manager.login_message = None
 from app.lloyd import lloyd
 from app.rotation import rotation
 app.register_blueprint(lloyd, url_prefix='/lloyd')
-app.register_blueprint(rotation, url_prefix='/rotation')
+# app.register_blueprint(rotation, url_prefix='/rotation')
 
 @app.route('/')
 def route_root():
