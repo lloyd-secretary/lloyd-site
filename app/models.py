@@ -7,7 +7,7 @@ db.reflect()
 # Anish's picture is temporarily the default
 default_photo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Jeb_Bush_by_Gage_Skidmore_2.jpg/1200px-Jeb_Bush_by_Gage_Skidmore_2.jpg"
 
-DATABASE_NAME = 'rotation2025'
+DATABASE_NAME = ''
 
 class User(db.Model, UserMixin):
     __tablename__ = 'houselist'
