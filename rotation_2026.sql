@@ -260,7 +260,7 @@ INSERT INTO prefrosh (lastname, firstname, dinner_id, photo_url, assignment) VAL
   ('Tang', 'Erik', 4, 'img/frosh2026/erik_tang.jpg', 'Zinc'),
   ('Wang', 'Bella', 4, 'img/frosh2026/bella_wang.jpg', 'Zinc'),
   ('Xu', 'Grace', 4, 'img/frosh2026/grace_xu.jpg', 'Zinc'),
-  ('Zhang', 'Eddie', 4, 'img/frosh2026/eddie_zhang.jpg', 'Zinc');
+  ('Zhang', 'Eddie', 4, 'img/frosh2026/eddie_zhang.jpg', 'Zinc'),
   ('Cabrera Guardado', 'Jose', 3, 'img/frosh2026/jose_cabrera_guardado.jpg', 'Hydrogen'),
   ('Fukatsu', 'Kosei', 3, 'img/frosh2026/kosei_fukatsu.jpg', 'Hydrogen'),
   ('Hojlund', 'Sara', 3, 'img/frosh2026/sara_hojlund.jpg', 'Hydrogen'),
