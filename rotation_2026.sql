@@ -280,10 +280,17 @@ INSERT INTO prefrosh (lastname, firstname, dinner_id, photo_url, assignment) VAL
   ('Tucker', 'Kai', 6, 'img/frosh2026/kai_tucker.jpg', 'Helium');
 -- Add the assigned meal and both free dinners for every freshman.
 INSERT INTO froshdinners (frosh_id, dinner_id)
-SELECT p.id, d.id FROM prefrosh AS p CROSS JOIN dinners AS d
-WHERE p.photo_url LIKE 'img/frosh2026/%' AND d.id IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+SELECT id, dinner_id
+FROM prefrosh
+UNION ALL
+SELECT id, 9
+FROM prefrosh
+UNION ALL
+SELECT id, 10
+FROM prefrosh;
+
 COMMIT;
-Helium
+-- Helium
 -- Expected result: every freshman has exactly three rows in froshdinners.
 SELECT p.firstname, p.lastname, COUNT(fd.dinner_id) AS dinner_count
 FROM prefrosh AS p LEFT JOIN froshdinners AS fd ON fd.frosh_id = p.id
