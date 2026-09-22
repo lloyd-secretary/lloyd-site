@@ -261,12 +261,29 @@ INSERT INTO prefrosh (lastname, firstname, dinner_id, photo_url, assignment) VAL
   ('Wang', 'Bella', 4, 'img/frosh2026/bella_wang.jpg', 'Zinc'),
   ('Xu', 'Grace', 4, 'img/frosh2026/grace_xu.jpg', 'Zinc'),
   ('Zhang', 'Eddie', 4, 'img/frosh2026/eddie_zhang.jpg', 'Zinc');
+  ('Cabrera Guardado', 'Jose', 3, 'img/frosh2026/jose_cabrera_guardado.jpg', 'Hydrogen'),
+  ('Fukatsu', 'Kosei', 3, 'img/frosh2026/kosei_fukatsu.jpg', 'Hydrogen'),
+  ('Hojlund', 'Sara', 3, 'img/frosh2026/sara_hojlund.jpg', 'Hydrogen'),
+  ('Ilnytskyi', 'Yurii', 3, 'img/frosh2026/yurii_ilnytskyi.jpg', 'Hydrogen'),
+  ('Li', 'Yuan', 3, 'img/frosh2026/yuan_li.jpg', 'Hydrogen'),
+  ('Mai', 'Tai', 3, 'img/frosh2026/tai_mai.jpg', 'Hydrogen'),
+  ('Zilmer', 'Christian', 3, 'img/frosh2026/christian_zilmer.jpg', 'Hydrogen'),
+  ('Jeong', 'Yechan', 6, 'img/frosh2026/yechan_jeong.jpg', 'Helium'),
+  ('Jiang', 'Owen', 6, 'img/frosh2026/owen_jiang.jpg', 'Helium'),
+  ('Li', 'Ke', 6, 'img/frosh2026/ke_li.jpg', 'Helium'),
+  ('Li', 'Kyle', 6, 'img/frosh2026/kyle_li.jpg', 'Helium'),
+  ('Lian', 'Haitong', 6, 'img/frosh2026/haitong_lian.jpg', 'Helium'),
+  ('Schwartzman', 'Juniper', 6, 'img/frosh2026/juniper_schwartzman.jpg', 'Helium'),
+  ('Segrest', 'Eric', 6, 'img/frosh2026/eric_segrest.jpg', 'Helium'),
+  ('Tang', 'Kevin', 6, 'img/frosh2026/kevin_tang.jpg', 'Helium'),
+  ('Thorne-Lyman', 'Jasper', 6, 'img/frosh2026/jasper_thorne_lyman.jpg', 'Helium'),
+  ('Tucker', 'Kai', 6, 'img/frosh2026/kai_tucker.jpg', 'Helium');
 -- Add the assigned meal and both free dinners for every freshman.
 INSERT INTO froshdinners (frosh_id, dinner_id)
 SELECT p.id, d.id FROM prefrosh AS p CROSS JOIN dinners AS d
 WHERE p.photo_url LIKE 'img/frosh2026/%' AND d.id IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 COMMIT;
-
+Helium
 -- Expected result: every freshman has exactly three rows in froshdinners.
 SELECT p.firstname, p.lastname, COUNT(fd.dinner_id) AS dinner_count
 FROM prefrosh AS p LEFT JOIN froshdinners AS fd ON fd.frosh_id = p.id
