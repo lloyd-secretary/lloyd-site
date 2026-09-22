@@ -2,7 +2,7 @@ import os
 
 SQLALCHEMY_DATABASE_URI = 'mysql://web@localhost/lloyd?charset=utf8mb4'
 SQLALCHEMY_BINDS = {
-    'rotation2026': 'mysql://web@localhost/rotation2026?charset=utf8mb4',
+    'rotation2025': 'mysql://web@localhost/rotation2025?charset=utf8mb4',
 }
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
